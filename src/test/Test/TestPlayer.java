@@ -130,7 +130,5 @@ public class TestPlayer {
 
         // Checking For Quinn Hughes' Overall Score
         assertEquals(62, Quinn_Hughes.getOverallRating());
-
-
     }
 }

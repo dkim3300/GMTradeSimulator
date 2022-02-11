@@ -28,31 +28,44 @@ public class Player {
         this.hockeyIQ = 0;
     }
 
-    // Requires: rating >= 0 & <= 100
+    // Modifies: this
+    // Effects: adjusts a player's rating
     public void addSkatingRating(int rating) {
         this.skating += rating;
     }
 
+    // Modifies: this
+    // Effects: adjusts a player's rating
     public void addShootingRating(int rating) {
         this.shooting += rating;
     }
 
+    // Modifies: this
+    // Effects: adjusts a player's rating
     public void addPuckSkillsRating(int rating) {
         this.puckSkills += rating;
     }
 
+    // Modifies: this
+    // Effects: adjusts a player's rating
     public void addCompeteLevelRating(int rating) {
         this.competeLevel += rating;
     }
 
+    // Modifies: this
+    // Effects: adjusts a player's rating
     public void addHockeyIQRating(int rating) {
         this.hockeyIQ += rating;
     }
 
+    // Modifies: this
+    // Effects: adjusts a player's rating
     public void setStatusAvailable() {
         this.status = "Available";
     }
 
+    // Modifies: this
+    // Effects: adjusts a player's rating
     public void setStatusNotAvailable() {
         this.status = "Not Available";
     }

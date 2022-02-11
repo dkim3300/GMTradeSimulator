@@ -37,6 +37,8 @@ As a user, I want to be able to add player's with an "available" status to the t
 
 As a user, I want to be able to add player's with a "not available" status to the current roster
 
+As a user, I want to be able to make new players and add them into the current roster
+
 As a user, I want to be able to quit the game 
 
 

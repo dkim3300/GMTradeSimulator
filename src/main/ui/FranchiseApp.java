@@ -4,13 +4,9 @@ import model.GeneralManager;
 import model.Player;
 import model.TeamFranchise;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FranchiseApp {
-
-    private ArrayList<Player> tradingBlock;
-    private ArrayList<Player> currTeam;
 
     private GeneralManager gm;
 
@@ -19,7 +15,6 @@ public class FranchiseApp {
     private Player jackHughes;
     private Player eliasPettersson;
     private Player austonMatthews;
-    private Player mitchMarner;
 
     private String teamName;
     private String teamLocation;
@@ -28,29 +23,32 @@ public class FranchiseApp {
 
     private Scanner input;
 
+    // Effects: runs application and initializes
     public FranchiseApp() {
+        initialize();
         runFranchise();
     }
 
+    // Modifies: this
+    // Effects: runs Franchise user interface
     private void runFranchise() {
-        initialize();
 
         // This is referencing the TellerApp
         boolean runningFranchise = true;
-        String otpionsToClickFrom = "";
+        String optionsToClickFrom = "";
 
-        //  This is referencing the TellerApp
+        // This is referencing the TellerApp
         while (runningFranchise) {
             options();
-            otpionsToClickFrom = input.next();
-            otpionsToClickFrom = otpionsToClickFrom.toLowerCase();
+            optionsToClickFrom = input.next();
+            optionsToClickFrom = optionsToClickFrom.toLowerCase();
 
             // This is referencing the TellerApp
-            if (otpionsToClickFrom.equals("q")) {
+            if (optionsToClickFrom.equals("q")) {
                 runningFranchise = false;
 
             } else {
-                execute(otpionsToClickFrom);
+                execute(optionsToClickFrom);
             }
         }
 
@@ -58,56 +56,52 @@ public class FranchiseApp {
     }
 
     // Referencing from TellerApp
+    // Effect: methods that will be processed with execution
     private void execute(String optiontoClickFrom) {
         if (optiontoClickFrom.equals("c")) {
             pullOutCurrentRoster();
         } else if (optiontoClickFrom.equals("t")) {
             pullOutTradingBlock();
-        } else if (optiontoClickFrom.equals("e")) {
-            editPlayer();
+        } else if (optiontoClickFrom.equals("m")) {
+            makePlayer();
         } else {
             System.out.println("System Not Valid");
         }
     }
 
+    // Modifies: this
+    // Effects: pulls out a list of players from the current roster
     private void pullOutCurrentRoster() {
-
-        // adding players into trading block
-        brockBoeser.setStatusNotAvailable();
-        canucks.getGm().getCurrTeam().add(brockBoeser);
-        eliasPettersson.setStatusAvailable();
-        canucks.getGm().getCurrTeam().add(eliasPettersson);
-        quinnHughes.setStatusAvailable();
-        canucks.getGm().getCurrTeam().add(quinnHughes);
-
+        System.out.println("____");
         // printing out the list of players on the team
         for (Player p : canucks.getGm().getCurrTeam()) {
             System.out.println(p.getName());
         }
 
+        System.out.println("____");
         System.out.println("What would you like to do?");
         optionsForCurrRoster();
     }
 
+    // Modifies: this
+    // Effects: pulls out a list of players from the trading block
     private void pullOutTradingBlock() {
-
-        // GeneralManager tradingBlock = new GeneralManager();
-        austonMatthews.setStatusAvailable();
-        canucks.getGm().getTradingBlock().add(austonMatthews);
-        mitchMarner.setStatusNotAvailable();
-        canucks.getGm().getTradingBlock().add(mitchMarner);
-        jackHughes.setStatusNotAvailable();
-        canucks.getGm().getTradingBlock().add(jackHughes);
-
+        System.out.println("____");
         // Printing out the players in the trading block
         for (Player p : canucks.getGm().getTradingBlock()) {
             System.out.println(p.getName());
         }
 
+        System.out.println("____");
         System.out.println("What would you like to do?");
         optionsForTradeBlock();
     }
 
+    // Modifies: this
+    // Effects: givers user an option to view a player's status from current roster,
+    //          and an option to have some players moved depending on the player's status.
+    //          If the player's status is "Available", the players will be moved from the current
+    //          to the trading block.
     private void optionsForCurrRoster() {
         String select = "";
 
@@ -119,7 +113,7 @@ public class FranchiseApp {
         }
 
         if (select.equals("view status")) {
-            // Printing out the players in current roster
+            System.out.println("____");
             for (Player p : canucks.getGm().getCurrTeam()) {
                 System.out.println(p.getName() + ": " + p.getStatus());
             }
@@ -127,24 +121,28 @@ public class FranchiseApp {
             movingPlayersToTradeFromCurrTeam();
 
         } else {
+            System.out.println("____");
             System.out.println("not valid option");
         }
     }
 
+    // Modifies: this
+    // Effects: givers user an option to view a player's status from current roster,
+    //          and an option to have some players moved depending on the player's status.
+    //          If the player's status is "Not Available", the players will be moved from the trading block
+    //          to the current roster.
     private void optionsForTradeBlock() {
         String select = "";
 
-        // while (!select.equals("view status") && !select.equals("move not avail players to current roster"))
         while (!select.equals("view status") && !select.equals("move not avail player to current roster")) {
             System.out.println("type 'view status' to view player's status");
             System.out.println("type 'move not avail player to current roster' to move a player to the current roster");
             select = input.next();
             select = select.toLowerCase();
-            // How do I loop back to the options in "while"
         }
 
         if (select.equals("view status")) {
-            // Printing out the players in the trading block
+            System.out.println("____");
             for (Player p : canucks.getGm().getTradingBlock()) {
                 System.out.println(p.getName() + ": " + p.getStatus());
             }
@@ -152,56 +150,130 @@ public class FranchiseApp {
             movingPlayersToCurrTeamFromTrade();
 
         } else {
+            System.out.println("____");
             System.out.println("not valid option");
         }
     }
 
-    private void editPlayer() {
-        // this is where I can edit players
+    // Modifies: this
+    // Effects: makes a new player and added into the current roster
+    private void makePlayer() {
+        String nm = "";
+        String p = "";
+        String status = "";
+
+        Player player1;
+
+        player1 = new Player(chooseName(nm), choosePosition(p));
+
+        if (editStatus() == true) {
+            player1.setStatusAvailable();
+        } else {
+            player1.setStatusNotAvailable();
+        }
+
+        canucks.getGm().addPlayerToCurrTeam(player1);
+
+        System.out.println("____");
+        for (Player plyer: canucks.getGm().getCurrTeam()) {
+            System.out.println(plyer.getName());
+        }
     }
 
+    // Modifies: this
+    // Effects: returns the name of an arbitrary player
+    private String chooseName(String nm) {
+        nm = "";
+
+        System.out.println("Enter player's name:");
+        nm = input.next();
+        nm = nm.toLowerCase();
+        return nm;
+    }
+
+    // Modifies: this
+    // Effects: returns the position of an arbitrary player
+    private String choosePosition(String p) {
+        p = "";
+
+        System.out.println("Enter player's position:");
+        p = input.next();
+        p = p.toLowerCase();
+        return p;
+    }
+
+    // Modifies: this
+    // Effects: returns true if the inputted status of the player by the user is
+    //          true, false otherwise
+    private boolean editStatus() {
+        String status = "";
+
+        System.out.println("Enter player's status:");
+        status = input.next();
+        status = status.toLowerCase();
+
+        if (status == "Available") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Modifies: this
+    // Effects: moves a player to the current roster from the trading block and
+    //          prints out the list of players from the updated current roster
     private void movingPlayersToCurrTeamFromTrade() {
-        System.out.println("____");
         canucks.gmAddToCurrRosterFromTradingBlock();
 
+        System.out.println("____");
         for (Player p : canucks.getGm().getCurrTeam()) {
             System.out.println(p.getName());
         }
     }
 
+    // Modifies: this
+    // Effects: moves a player to the trading block from the current roster and
+    //          prints out the list of players from the updated trading block
     private void movingPlayersToTradeFromCurrTeam() {
-        System.out.println("____");
         canucks.gmAddToTradingBlockFromCurrTeam();
 
+        System.out.println("____");
         for (Player p : canucks.getGm().getTradingBlock()) {
             System.out.println(p.getName());
         }
     }
 
-    // Effects: displays menu of options to user
+    // Effects: projects the options available for the user
     private void options() {
         System.out.println("\nSelect from:");
         System.out.println("\tc -> pull out current roster");
         System.out.println("\tt -> pull out trading block");
-        System.out.println("\te -> edit player");
+        System.out.println("\tm -> make player");
         System.out.println("\tq -> quit\n");
     }
 
+    // Modifies: this
+    // Effects: initializes team franchise, players, general manager
     private void initialize() {
+        canucks = new TeamFranchise(gm, teamName, teamLocation);
         quinnHughes = new Player("Quinn Hughes", "Defense");
         brockBoeser = new Player("Brock Boeser", "Forward");
-        mitchMarner = new Player("Mitch Marner", "Forward");
-        jackHughes = new Player("Jack Hughes", "Forward");
         eliasPettersson = new Player("Elias Pettersson", "Forward");
-        austonMatthews = new Player("Auston Matthews", "Forward");
-
+        jackHughes = new Player("Jack Hughes", "Forward");
+        austonMatthews = new Player("Auston Matthews", "Foward");
         teamName = "Canucks";
         teamLocation = "Vancouver";
-
         gm = new GeneralManager();
-
-        canucks = new TeamFranchise(gm, teamName, teamLocation);
-
+        quinnHughes.setStatusAvailable();
+        brockBoeser.setStatusAvailable();
+        eliasPettersson.setStatusNotAvailable();
+        jackHughes.setStatusNotAvailable();
+        austonMatthews.setStatusNotAvailable();
+        canucks.getGm().addPlayerToCurrTeam(brockBoeser);
+        canucks.getGm().addPlayerToCurrTeam(eliasPettersson);
+        canucks.getGm().addPlayerToCurrTeam(quinnHughes);
+        canucks.getGm().addPlayerToTradingBlock(jackHughes);
+        canucks.getGm().addPlayerToTradingBlock(austonMatthews);
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }

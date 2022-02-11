@@ -1,17 +1,10 @@
 package model;
 
-// Things I want the GM to be able to do
-// - 1) add and remove players on their team
-// - 2) add "value" to each player on their team
-// - 3) add and remove players my team from a trading block
-
 import java.util.ArrayList;
 
 public class GeneralManager {
 
-    private Player player;
-
-    private ArrayList<Player> tradingBlock;     // Players on the trading block
+    private ArrayList<Player> tradingBlock;      // Players on the trading block
     private ArrayList<Player> currTeam;          // Current players on this team
 
     public GeneralManager() {
@@ -62,11 +55,6 @@ public class GeneralManager {
     public ArrayList<Player> getCurrTeam() {
         return currTeam;
     }
-
-    // Effects: returns a player from a list
-    // public Player getPlayer() {
-    //     return player;
-    //}
 
     // Effects: returns true if player is in trading block
     public boolean containTradingBlock(Player player) {
