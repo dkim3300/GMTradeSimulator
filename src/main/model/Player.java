@@ -66,7 +66,7 @@ public class Player {
     // }
 
     // Requires: ratings of players >= 0
-    // Modifies:
+    // Modifies: this
     // Effects: returns the overall ratings of players
     public int getOverallRating() {
         return ((shooting + skating + puckSkills + competeLevel + hockeyIQ) / 5);

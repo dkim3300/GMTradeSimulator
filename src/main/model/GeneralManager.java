@@ -30,12 +30,9 @@ public class GeneralManager {
     // Modifies: this
     // Effects: removes player from the trading block if there, but nothing happens if not
     public Player removePlayerFromTradingBlock(Player player) {
-        //System.out.println("trading block before removing: " + tradingBlock);
         if (tradingBlock.contains(player)) {
             tradingBlock.remove(player);
         }
-        //System.out.println("trading block after removing: " + tradingBlock);
-        //System.out.println("player: " + player);
         return player;
     }
 

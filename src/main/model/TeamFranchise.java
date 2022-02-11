@@ -1,13 +1,5 @@
 package model;
 
-// TeamFranchise would have an admin variable here
-// team has variables for gm, admin, rostermanagement, player
-//    - each of those variables that points back tot the team they are associated with
-// Use stories to focus on
-// - 1) implementing adding/removing players from roster
-// - 2) adding/removing players from a trading block
-
-
 import java.util.ArrayList;
 
 public class TeamFranchise {
@@ -28,9 +20,9 @@ public class TeamFranchise {
         this.teamlocation = "Vancouver";
     }
 
-    // Requires:
-    // Modifies:
-    // Effects:
+    // Modifies: this
+    // Effects: if player on the current team has status, "Available", then each player is going to be
+    //          added to the trading block list and removed from the current team
     public void gmAddToTradingBlockFromCurrTeam() {
         ArrayList<Player> playersToRemove = new ArrayList<>();
         for (Player p : gm.getCurrTeam()) {
@@ -44,11 +36,10 @@ public class TeamFranchise {
         }
     }
 
-    // Requires:
-    // Modifies:
-    // Effects:
+    // Modifies: this
+    // Effects: if a player on the trading block has status "Not Available", then each of those players
+    //          is going to be added to the current team and removed from the trading block
     public void gmAddToCurrRosterFromTradingBlock() {
-        System.out.println("trading block: " + gm.getTradingBlock());
         ArrayList<Player> playersToRemove = new ArrayList<>();
         for (Player p : gm.getTradingBlock()) {
             if (p.getStatus() == "Not Available") {
@@ -58,7 +49,7 @@ public class TeamFranchise {
         }
         for (Player p : playersToRemove) {
             gm.removePlayerFromTradingBlock(p);
-            System.out.println("trading block: " + gm.getTradingBlock());
+            //System.out.println("trading block: " + gm.getTradingBlock());
         }
     }
 
@@ -67,21 +58,27 @@ public class TeamFranchise {
         return gm;
     }
 
+    // -- will be for phase 2 ---
     //public void requirements() {
     //}
 
+    // -- will be for phase 2 ---
     //public void adjustRatings() {
     //}
 
+    // -- will be for phase 2 ---
     //public void proposeTrade() {
     //}
 
+    // -- will be for phase 2 ---
     //public void acceptTrade() {
     //}
 
+    // -- will be for phase 2 ---
     //public void declineTrade() {
     //}
 
+    // -- will be for phase 2 ---
     //public void counterTrade() {
     //}
 }

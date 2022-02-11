@@ -34,15 +34,24 @@ public class TestGeneralManager {
 
         // check that the number in the set
         checkTradingBlockContainsOnce(Quinn_Hughes);
+
+        // adding in a player in the trading block and testing if they are in the trading block
+        testTradingBlock.addPlayerToTradingBlock(Quinn_Hughes);
+        assertTrue(testTradingBlock.getTradingBlock().contains(Quinn_Hughes));
+        testTradingBlock.addPlayerToTradingBlock(Elias_Petterson);
+        assertTrue(testTradingBlock.getTradingBlock().contains(Elias_Petterson));
+        assertEquals(2, testTradingBlock.getTradingBlock().size());
     }
 
     @Test
     public void testRemovePlayerFromTradingBlock() {
         // adding 2 player into the trading block
         testTradingBlock.addPlayerToTradingBlock(Elias_Petterson);
+        assertTrue(testTradingBlock.getTradingBlock().contains(Elias_Petterson));
         testTradingBlock.addPlayerToTradingBlock(Quinn_Hughes);
+        assertTrue(testTradingBlock.getTradingBlock().contains(Quinn_Hughes));
 
-        // checking if the player is in trading block
+        // checking if the right number of players are in the trading block
         assertEquals(2, testTradingBlock.sizeTradingBlock());
 
         // removing player from trading block
@@ -50,6 +59,7 @@ public class TestGeneralManager {
 
         // checking if player has been removed
         assertFalse(testTradingBlock.containTradingBlock(Elias_Petterson));
+        assertEquals(1, testTradingBlock.getTradingBlock().size());
     }
 
     @Test
@@ -59,13 +69,17 @@ public class TestGeneralManager {
 
         // adding 2 players to the current team
         testCurrentTeam.addPlayerToCurrTeam(Elias_Petterson);
+        assertTrue(testCurrentTeam.getCurrTeam().contains(Elias_Petterson));
         testCurrentTeam.addPlayerToCurrTeam(Quinn_Hughes);
+        assertTrue(testCurrentTeam.getCurrTeam().contains(Quinn_Hughes));
 
-        // checking if the 2 players has been added to the current team
+        // checking if correcct number of players have been added players has been added to the current team
         assertEquals(2, testCurrentTeam.sizeCurrTeam());
+        assertFalse(testCurrentTeam.sizeCurrTeam() == 3);
+
+        // Checking if players added to the team are in currently on the team
         assertTrue(testCurrentTeam.containCurrTeam(Elias_Petterson));
         assertTrue(testCurrentTeam.containCurrTeam(Quinn_Hughes));
-        assertFalse(testCurrentTeam.sizeCurrTeam() == 3);
     }
 
     @Test
@@ -73,10 +87,12 @@ public class TestGeneralManager {
         // adding a player to the current team
         testCurrentTeam.addPlayerToCurrTeam(Elias_Petterson);
         assertTrue(testCurrentTeam.containCurrTeam(Elias_Petterson));
+        assertEquals(1, testCurrentTeam.getCurrTeam().size());
 
         // removing the player from the current team
         testCurrentTeam.removePlayerFromCurrTeam(Elias_Petterson);
         assertFalse(testCurrentTeam.containCurrTeam(Elias_Petterson));
+        assertEquals(0, testCurrentTeam.getCurrTeam().size());
     }
 
     @Test
