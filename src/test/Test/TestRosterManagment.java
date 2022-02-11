@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class TestRosterManagment {
@@ -61,5 +62,14 @@ public class TestRosterManagment {
         // removing the player from testRoster1
         testRoster1.removePlayerFromRoster(Brock_Boeser);
         assertEquals(0, testRoster1.sizeCurrTeam());
+    }
+
+    @Test
+    public void testContainPlayer() {
+        // adding players to the current roster
+        testRoster1.addPlayerToRoster(Sidney_Crosby);
+        assertTrue(testRoster1.containCurrTeam(Sidney_Crosby));
+        testRoster1.addPlayerToRoster(Brock_Boeser);
+        assertTrue(testRoster1.containCurrTeam(Brock_Boeser));
     }
 }

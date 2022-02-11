@@ -5,8 +5,6 @@ import model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestGeneralManager {
@@ -81,7 +79,53 @@ public class TestGeneralManager {
         assertFalse(testCurrentTeam.containCurrTeam(Elias_Petterson));
     }
 
+    @Test
+    public void testSizeofCurrTeam() {
+        // adding players to the current team
+        testCurrentTeam.addPlayerToCurrTeam(Elias_Petterson);
+        assertEquals(1, testCurrentTeam.sizeCurrTeam());
+        testCurrentTeam.addPlayerToCurrTeam(Quinn_Hughes);
+        assertEquals(2, testCurrentTeam.sizeCurrTeam());
 
+        // now removing player from team
+        testCurrentTeam.removePlayerFromCurrTeam(Elias_Petterson);
+        assertEquals(1, testCurrentTeam.sizeCurrTeam());
+    }
+
+    @Test
+    public void testsizeofTradeBlock() {
+        // adding players to the trade block
+        testTradingBlock.addPlayerToTradingBlock(Elias_Petterson);
+        assertEquals(1, testTradingBlock.sizeTradingBlock());
+        testTradingBlock.addPlayerToTradingBlock(Quinn_Hughes);
+        assertEquals(2, testTradingBlock.sizeTradingBlock());
+
+        // now removing player from team
+        testTradingBlock.removePlayerFromTradingBlock(Quinn_Hughes);
+        assertEquals(1, testTradingBlock.sizeTradingBlock());
+    }
+
+    @Test
+    public void testGetCurrteam() {
+        // adding players to current team
+        testCurrentTeam.addPlayerToCurrTeam(Elias_Petterson);
+        testCurrentTeam.addPlayerToCurrTeam(Quinn_Hughes);
+
+        // checking if I get the current team, its the right size and player
+        assertEquals(2, testCurrentTeam.getCurrTeam().size());
+        assertTrue(testCurrentTeam.getCurrTeam().contains(Elias_Petterson));
+    }
+
+    @Test
+    public void testGetTradingBlock() {
+        // adding players to the trading block
+        testTradingBlock.addPlayerToTradingBlock(Elias_Petterson);
+        testTradingBlock.addPlayerToTradingBlock(Quinn_Hughes);
+
+        // checking if I can get the trading block at it's right size and player
+        assertEquals(2, testTradingBlock.getTradingBlock().size());
+        assertTrue(testTradingBlock.getTradingBlock().contains(Quinn_Hughes));
+    }
 
      private void checkTradingBlockDoesntContain(Player player) {
         assertEquals(testTradingBlock.sizeTradingBlock(), 0);

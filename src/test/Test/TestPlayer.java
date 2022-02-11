@@ -98,4 +98,39 @@ public class TestPlayer {
         assertEquals("Jack Hughes", Jack_Hughes.getName());
         assertEquals("Forward", Jack_Hughes.getPosition());
     }
+
+    @Test
+    public void testgetOverallRating() {
+        // add player's attributes
+        Elias_Petterson.addPuckSkillsRating(100);
+        assertEquals(100, Elias_Petterson.getPuckSkillsRating());
+        Elias_Petterson.addHockeyIQRating(100);
+        assertEquals(100, Elias_Petterson.getHockeyIQ());
+        Elias_Petterson.addShootingRating(100);
+        assertEquals(100, Elias_Petterson.getShootingRating());
+        Elias_Petterson.addCompeteLevelRating(100);
+        assertEquals(100, Elias_Petterson.getCompeteLevel());
+        Elias_Petterson.addSkatingRating(100);
+        assertEquals(100, Elias_Petterson.getSkatingRating());
+
+        // checking for Elias Pettersson's Overall Score
+        assertEquals(100, Elias_Petterson.getOverallRating());
+
+        // add player's attributes
+        Quinn_Hughes.addSkatingRating(92);
+        assertEquals(92, Quinn_Hughes.getSkatingRating());
+        Quinn_Hughes.addShootingRating(70);
+        assertEquals(70, Quinn_Hughes.getShootingRating());
+        Quinn_Hughes.addHockeyIQRating(85);
+        assertEquals(85, Quinn_Hughes.getHockeyIQ());
+        Quinn_Hughes.addCompeteLevelRating(63);
+        assertEquals(63, Quinn_Hughes.getCompeteLevel());
+        Quinn_Hughes.addPuckSkillsRating(3);
+        assertEquals(3, Quinn_Hughes.getPuckSkillsRating());
+
+        // Checking For Quinn Hughes' Overall Score
+        assertEquals(62, Quinn_Hughes.getOverallRating());
+
+
+    }
 }

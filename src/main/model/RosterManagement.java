@@ -19,21 +19,6 @@ public class RosterManagement {
         roster = new ArrayList<>();
     }
 
-
-    // Requires:
-    // Modifies: this
-    // Effects: adds players into defence group
-    //public void defense() {
-        // stub
-    //}
-
-    // Requires:
-    // Modifies: this
-    // Effects: adds goalies into defence group
-    //public void goalies() {
-        // stub
-    //}
-
     // Effects: adds a player, p to the roster
     public void addPlayerToRoster(Player player) {
         roster.add(player);
