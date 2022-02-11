@@ -64,9 +64,9 @@ public class GeneralManager {
     }
 
     // Effects: returns a player from a list
-    public Player getPlayer() {
-        return player;
-    }
+    // public Player getPlayer() {
+    //     return player;
+    //}
 
     // Effects: returns true if player is in trading block
     public boolean containTradingBlock(Player player) {
