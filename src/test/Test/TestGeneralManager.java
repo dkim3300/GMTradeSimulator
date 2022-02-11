@@ -1,6 +1,5 @@
 package Test;
 
-import com.sun.tools.javah.Gen;
 import model.GeneralManager;
 import model.Player;
 import org.junit.jupiter.api.BeforeEach;
