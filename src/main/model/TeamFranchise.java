@@ -7,7 +7,6 @@ package model;
 // - 1) implementing adding/removing players from roster
 // - 2) adding/removing players from a trading block
 
-import com.sun.tools.javah.Gen;
 
 import java.util.ArrayList;
 
@@ -21,14 +20,6 @@ public class TeamFranchise {
     private String teamlocation;
 
     ArrayList<Player> canucks;
-
-    //public TeamFranchise() {
-    //    canucks = new ArrayList<Player>();
-    //    rostermgmt = new RosterManagement();
-    //    gm = new GeneralManager();
-    //    teamName = "Canucks";
-    //    teamlocation = "Vancouver";
-    //}
 
     public TeamFranchise(GeneralManager gm, String teamName, String teamlocation) {
         // canucks = new ArrayList<Player>();
@@ -76,27 +67,21 @@ public class TeamFranchise {
         return gm;
     }
 
-    public void requirements() {
+    //public void requirements() {
+    //}
 
-    }
+    //public void adjustRatings() {
+    //}
 
-    public void adjustRatings() {
+    //public void proposeTrade() {
+    //}
 
-    }
+    //public void acceptTrade() {
+    //}
 
-    public void proposeTrade() {
+    //public void declineTrade() {
+    //}
 
-    }
-
-    public void acceptTrade() {
-
-    }
-
-    public void declineTrade() {
-
-    }
-
-    public void counterTrade() {
-
-    }
+    //public void counterTrade() {
+    //}
 }

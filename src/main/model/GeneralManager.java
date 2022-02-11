@@ -5,9 +5,6 @@ package model;
 // - 2) add "value" to each player on their team
 // - 3) add and remove players my team from a trading block
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GeneralManager {
@@ -25,13 +22,9 @@ public class GeneralManager {
     // Modifies: this
     // Effects: adds player to the trading block if they are not already there
     public void addPlayerToTradingBlock(Player player) {
-        //System.out.println("trading block before removing: " + tradingBlock);
-
         if (!tradingBlock.contains(player)) {
             tradingBlock.add(player);
         }
-
-        //System.out.println("trading block after removing: " + tradingBlock);
     }
 
     // Modifies: this
@@ -74,8 +67,8 @@ public class GeneralManager {
     }
 
     // Effects: returns a player from a list
-    public Player getPlayer() {                  // this will allow me get a player from a list and add them
-        return player;                           //   to another list
+    public Player getPlayer() {
+        return player;
     }
 
     // Effects: returns true if player is in trading block
