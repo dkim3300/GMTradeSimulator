@@ -39,7 +39,6 @@ public class jsonWriterTest extends jsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyCurrTeam.json");
             canucks = reader.read();
-            //assertEquals("Canucks", canucks.getName());
             assertEquals(0, canucks.getGm().sizeCurrTeam());
         } catch (IOException e) {
             fail("Don't want exception to be caught");
@@ -57,7 +56,6 @@ public class jsonWriterTest extends jsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyTradingBlock.json");
             canucks = reader.read();
-            //assertEquals("Canucks", canucks.getName());
             assertEquals(0, canucks.getGm().sizeTradingBlock());
         } catch (IOException e) {
             fail("Don't want exception to be caught");
@@ -78,7 +76,6 @@ public class jsonWriterTest extends jsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralCurrTeam.json");
             canucks = reader.read();
-            //assertEquals("Canucks", canucks.getName());
             ArrayList<Player> currTeam = canucks.getGm().getCurrTeam();
             assertEquals(3, currTeam.size());
             checkPlayer("John Doe", "Forward", "Available", 1, 2, 3, 4, 5, currTeam.get(0));
@@ -102,7 +99,6 @@ public class jsonWriterTest extends jsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralTradingBlock.json");
             canucks = reader.read();
-            //assertEquals("Canucks", canucks.getName());
             ArrayList<Player> tradingBlock = canucks.getGm().getTradingBlock();
             assertEquals(2, tradingBlock.size());
             checkPlayer("Bo Horvat", "Forward", "Available", 1, 2, 3, 4, 5, tradingBlock.get(0));

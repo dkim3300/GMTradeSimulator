@@ -33,7 +33,7 @@ public class FranchiseApp {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    // Effects: runs application and initializes
+    // EFFECTS: runs application and initializes
     public FranchiseApp() throws FileNotFoundException {
         jsonWriter = new JsonWriter(GM_Store);
         jsonReader = new JsonReader(GM_Store);
@@ -41,8 +41,8 @@ public class FranchiseApp {
         runFranchise();
     }
 
-    // Modifies: this
-    // Effects: runs Franchise user interface
+    // MODIFIES: this
+    // EFFECTS: runs Franchise user interface
     private void runFranchise() {
 
         // This is referencing the TellerApp
@@ -68,7 +68,7 @@ public class FranchiseApp {
     }
 
     // Referencing from TellerApp
-    // Effect: methods that will be processed with execution
+    // EFFECTS: methods that will be processed with execution
     private void execute(String optiontoClickFrom) {
         if (optiontoClickFrom.equals("c")) {
             pullOutCurrentRoster();
@@ -85,8 +85,8 @@ public class FranchiseApp {
         }
     }
 
-    // Modifies: this
-    // Effects: pulls out a list of players from the current roster
+    // MODIFIES: this
+    // EFFECTS: pulls out a list of players from the current roster
     private void pullOutCurrentRoster() {
         System.out.println("____");
         // printing out the list of players on the team
@@ -99,8 +99,8 @@ public class FranchiseApp {
         optionsForCurrRoster();
     }
 
-    // Modifies: this
-    // Effects: pulls out a list of players from the trading block
+    // MODIFIES: this
+    // EFFECTS: pulls out a list of players from the trading block
     private void pullOutTradingBlock() {
         System.out.println("____");
         // Printing out the players in the trading block
@@ -113,8 +113,8 @@ public class FranchiseApp {
         optionsForTradeBlock();
     }
 
-    // Modifies: this
-    // Effects: givers user an option to view a player's status from current roster,
+    // MODIFIES: this
+    // EFFECTS: givers user an option to view a player's status from current roster,
     //          and an option to have some players moved depending on the player's status.
     //          If the player's status is "Available", the players will be moved from the current
     //          to the trading block.
@@ -142,8 +142,8 @@ public class FranchiseApp {
         }
     }
 
-    // Modifies: this
-    // Effects: givers user an option to view a player's status from current roster,
+    // MODIFIES: this
+    // EFFECTS: givers user an option to view a player's status from current roster,
     //          and an option to have some players moved depending on the player's status.
     //          If the player's status is "Not Available", the players will be moved from the trading block
     //          to the current roster.
@@ -171,8 +171,8 @@ public class FranchiseApp {
         }
     }
 
-    // Modifies: this
-    // Effects: makes a new player and added into the current roster
+    // MODIFIES: this
+    // EFFECTS: makes a new player and added into the current roster
     private void makePlayer() {     // move makePlayer into TeamFranchise
         String nm = "";             //   and move chooseName and choosePosition as params to makePlayer
         String p = "";
@@ -196,8 +196,8 @@ public class FranchiseApp {
         }
     }
 
-    // Modifies: this
-    // Effects: returns the name of an arbitrary player
+    // MODIFIES: this
+    // EFFECTS: returns the name of an arbitrary player
     private String chooseName(String nm) {
         nm = "";
 
@@ -207,8 +207,8 @@ public class FranchiseApp {
         return nm;
     }
 
-    // Modifies: this
-    // Effects: returns the position of an arbitrary player
+    // MODIFIES: this
+    // EFFECTS: returns the position of an arbitrary player
     private String choosePosition(String p) {
         p = "";
 
@@ -218,8 +218,8 @@ public class FranchiseApp {
         return p;
     }
 
-    // Modifies: this
-    // Effects: returns true if the inputted status of the player by the user is
+    // MODIFIES: this
+    // EFFECTS: returns true if the inputted status of the player by the user is
     //          true, false otherwise
     private boolean editStatus() {
         String status = "";
@@ -234,8 +234,8 @@ public class FranchiseApp {
         }
     }
 
-    // Modifies: this
-    // Effects: moves a player to the current roster from the trading block and
+    // MODIFIES: this
+    // EFFECTS: moves a player to the current roster from the trading block and
     //          prints out the list of players from the updated current roster
     private void movingPlayersToCurrTeamFromTrade() {
         canucks.gmAddToCurrRosterFromTradingBlock();
@@ -246,8 +246,8 @@ public class FranchiseApp {
         }
     }
 
-    // Modifies: this
-    // Effects: moves a player to the trading block from the current roster and
+    // MODIFIES: this
+    // EFFECTS: moves a player to the trading block from the current roster and
     //          prints out the list of players from the updated trading block
     private void movingPlayersToTradeFromCurrTeam() {
         canucks.gmAddToTradingBlockFromCurrTeam();
@@ -258,7 +258,7 @@ public class FranchiseApp {
         }
     }
 
-    // Effects: projects the options available for the user
+    // EFFECTS: projects the options available for the user
     private void options() {
         System.out.println("\nSelect from:");
         System.out.println("\tc -> pull out current roster");
@@ -269,8 +269,8 @@ public class FranchiseApp {
         System.out.println("\tq -> quit\n");
     }
 
-    // Modifies: this
-    // Effects: initializes team franchise, players, general manager
+    // MODIFIES: this
+    // EFFECTS: initializes team franchise, players, general manager
     private void initialize() {
         canucks = new TeamFranchise(gm, teamName, teamLocation);
         quinnHughes = new Player("Quinn Hughes", "Defense");
@@ -295,24 +295,26 @@ public class FranchiseApp {
         input.useDelimiter("\n");
     }
 
+    // Referencing WorkRoom
     // EFFECTS: saves the GM rosters to file
     public void saveGMRosters() {
         try {
             jsonWriter.open();
             jsonWriter.write(canucks);
             jsonWriter.close();
-            System.out.println("Saved " + "current roster and trading block" + " to " + GM_Store);
+            System.out.println("Saved " + "current roster and trading block" + " to: " + GM_Store);
         } catch (FileNotFoundException e) {
             System.out.println("Not able to write file: " + GM_Store);
         }
     }
 
+    // Referencing WorkRoom
     // MODIFIES: this
     // EFFECTS: loads GM rosters from file
     public void loadGMRosters() {
         try {
             canucks = jsonReader.read();
-            System.out.println("Loaded " + "current roster and trading block" + " from " + GM_Store);
+            System.out.println("Loaded " + "current roster and trading block" + " from: " + GM_Store);
         } catch (IOException e) {
             System.out.println("Not able to read from file: " + GM_Store);
         }

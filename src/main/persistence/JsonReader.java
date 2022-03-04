@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+// Referencing WorkRoom
 // Represents a reader that reads workroom from JSON data stored in file
 public class JsonReader {
 
@@ -23,6 +24,7 @@ public class JsonReader {
 
     private String source;
 
+    // Referencing WorkRoom
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
@@ -47,14 +49,13 @@ public class JsonReader {
 
     // EFFECTS: parses general manager from JSON object and returns it
     private TeamFranchise parseTeamFranchise(JSONObject jsonObject) {
-        //String name = jsonObject.getString("name");
         TeamFranchise canucks = new TeamFranchise(gm, name, location);
         addPlayersToTradingBlock(canucks, jsonObject);  // not sure about this
         addPlayersToCurrTeam(canucks, jsonObject);      // not sure about this
         return canucks;
     }
 
-    // MODIFIES: wr
+    // MODIFIES: canucks
     // EFFECTS: parses players from JSON object and adds them to the trading block
     private void addPlayersToTradingBlock(TeamFranchise canucks, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("tradingBlock");
@@ -64,7 +65,7 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: gm
+    // MODIFIES: canucks
     // EFFECTS: parses player from JSON object and adds it to trading block or curr team
     private Player addPlayer(TeamFranchise canucks, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
@@ -80,17 +81,21 @@ public class JsonReader {
         return player;
     }
 
+    // MODIFIES:
+    // EFFECTS:
     private void addPlayerToCurrTeam(TeamFranchise canucks, JSONObject jsonObject) {
         Player p = addPlayer(canucks, jsonObject);
         canucks.getGm().addPlayerToCurrTeam(p);
     }
 
+    // MODIFIES:
+    // EFFECTS:
     private void addPlayerToTradingBlock(TeamFranchise canucks, JSONObject jsonObject) {
         Player p = addPlayer(canucks, jsonObject);
         canucks.getGm().addPlayerToTradingBlock(p);
     }
 
-    // MODIFIES: wr
+    // MODIFIES: canucks
     // EFFECTS: parses players from JSON object and adds them to the current team
     private void addPlayersToCurrTeam(TeamFranchise canucks, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("currTeam");

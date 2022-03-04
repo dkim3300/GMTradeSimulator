@@ -19,14 +19,15 @@ public class TeamFranchise implements Writable {
 
     ArrayList<Player> canucks;
 
+    //EFFECTS: making the constructor
     public TeamFranchise(GeneralManager gm, String teamName, String teamlocation) {
         this.gm = new GeneralManager();
         this.teamName = "Canucks";
         this.teamlocation = "Vancouver";
     }
 
-    // Modifies: this
-    // Effects: if player on the current team has status, "Available", then each player is going to be
+    // MODIFIES: this
+    // EFFECTS: if player on the current team has status, "Available", then each player is going to be
     //          added to the trading block list and removed from the current team
     public void gmAddToTradingBlockFromCurrTeam() {
         ArrayList<Player> playersToRemove = new ArrayList<>();
@@ -41,8 +42,8 @@ public class TeamFranchise implements Writable {
         }
     }
 
-    // Modifies: this
-    // Effects: if a player on the trading block has status "Not Available", then each of those players
+    // MODIFIES: this
+    // EFFECTS: if a player on the trading block has status "Not Available", then each of those players
     //          is going to be added to the current team and removed from the trading block
     public void gmAddToCurrRosterFromTradingBlock() {
         ArrayList<Player> playersToRemove = new ArrayList<>();
@@ -57,7 +58,7 @@ public class TeamFranchise implements Writable {
         }
     }
 
-    // Effects: returns the General Manager
+    // EFFECTS: returns the General Manager
     public GeneralManager getGm() {
         return gm;
     }
@@ -86,6 +87,7 @@ public class TeamFranchise implements Writable {
     //public void counterTrade() {
     //}
 
+    // Referencing WorkRoom
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -115,6 +117,4 @@ public class TeamFranchise implements Writable {
 
         return jsonArray;
     }
-
-
 }

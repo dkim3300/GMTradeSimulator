@@ -53,7 +53,6 @@ public class jsonReaderTest extends jsonTest {
         JsonReader reader = new JsonReader("./data/testReaderGeneralCurrentTeam.json");
         try {
             TeamFranchise canucks = reader.read();
-            //assertEquals("Canucks", gm.getName());
             ArrayList<Player> currTeam = canucks.getGm().getCurrTeam();
             assertEquals(3, canucks.getGm().sizeCurrTeam());
             checkPlayer("Connor McDavid", "Forward", "Available", 0, 0, 0, 0, 0, currTeam.get(0));
@@ -69,7 +68,6 @@ public class jsonReaderTest extends jsonTest {
         JsonReader reader = new JsonReader("./data/testReaderGeneralTradingBlockTeam.json");
         try {
             TeamFranchise canucks = reader.read();
-            //assertEquals("Canucks", canucks.getGm().getName());
             ArrayList<Player> tradingBlock = canucks.getGm().getTradingBlock();
             assertEquals(4, canucks.getGm().sizeTradingBlock());
             checkPlayer("Quinn Hughes", "Defense", "Not Available", 1, 2, 3, 4, 5, tradingBlock.get(0));
@@ -86,7 +84,6 @@ public class jsonReaderTest extends jsonTest {
         JsonReader reader = new JsonReader("./data/testReaderGeneralCurrTeamAndTradingBlock.json");
         try {
             TeamFranchise canucks = reader.read();
-            //assertEquals("Canucks", gm.getName());
 
             ArrayList<Player> tradingBlock = canucks.getGm().getTradingBlock();
             assertEquals(4, canucks.getGm().sizeTradingBlock());
@@ -112,7 +109,6 @@ public class jsonReaderTest extends jsonTest {
         JsonReader reader = new JsonReader("./data/testReaderCurrTeamAndBlockException.json");
         try {
             TeamFranchise canucks = reader.read();
-            //assertEquals("Canucks", canucks.getGm().getName());
 
             ArrayList<Player> tradingBlock = canucks.getGm().getTradingBlock();
             assertEquals(2, tradingBlock.size());

@@ -8,12 +8,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
+// Referencing WorkRoom
 // Represents a writer that writes JSON representation of workroom to file
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;
     private String destination;
 
+    // Referencing WorkRoom
     // EFFECTS: constructs writer to write to destination file
     public JsonWriter(String destination) {
         this.destination = destination;
