@@ -173,10 +173,10 @@ public class FranchiseApp {
 
     // Modifies: this
     // Effects: makes a new player and added into the current roster
-    private void makePlayer() {
-        String nm = "";
+    private void makePlayer() {     // move makePlayer into TeamFranchise
+        String nm = "";             //   and move chooseName and choosePosition as params to makePlayer
         String p = "";
-        String status = "";
+        String status = "";         // also make edit player and do same thing
 
         Player player1;
 
@@ -203,7 +203,7 @@ public class FranchiseApp {
 
         System.out.println("Enter player's name:");
         nm = input.next();
-        nm = nm.toLowerCase();
+        //nm = nm.toLowerCase();
         return nm;
     }
 
@@ -214,7 +214,7 @@ public class FranchiseApp {
 
         System.out.println("Enter player's position:");
         p = input.next();
-        p = p.toLowerCase();
+        //p = p.toLowerCase();
         return p;
     }
 
@@ -226,12 +226,11 @@ public class FranchiseApp {
 
         System.out.println("Enter player's status:");
         status = input.next();
-        status = status.toLowerCase();
 
-        if (status == "Available") {      // how do I debug this? --> ask TA
+        if (status.equals("Available")) {      // how do I debug this? --> ask TA
             return true;
         } else {
-            return false;
+            return false;   // when comparing strings, use .equals()
         }
     }
 
@@ -302,7 +301,7 @@ public class FranchiseApp {
             jsonWriter.open();
             jsonWriter.write(canucks);
             jsonWriter.close();
-            System.out.println("Saved " + "Roster" + " to " + GM_Store);  // want to add gm name here;
+            System.out.println("Saved " + "current roster and trading block" + " to " + GM_Store);
         } catch (FileNotFoundException e) {
             System.out.println("Not able to write file: " + GM_Store);
         }
@@ -313,7 +312,7 @@ public class FranchiseApp {
     public void loadGMRosters() {
         try {
             canucks = jsonReader.read();
-            System.out.println("Loaded " + "Roster" + " from " + GM_Store);   // want to add gm name
+            System.out.println("Loaded " + "current roster and trading block" + " from " + GM_Store);
         } catch (IOException e) {
             System.out.println("Not able to read from file: " + GM_Store);
         }

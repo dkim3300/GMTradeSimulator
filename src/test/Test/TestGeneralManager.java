@@ -135,6 +135,42 @@ public class TestGeneralManager {
     }
 
     @Test
+    public void testDuplicatePlayer() {
+        // adding Quinn Hughes to the trading block
+        testTradingBlock.addPlayerToTradingBlock(Quinn_Hughes);
+
+        // adding quinn hughes again
+        testTradingBlock.addPlayerToTradingBlock(Quinn_Hughes);
+
+        // checking to make sure there is only one player in trading list
+        assertEquals(1, testTradingBlock.sizeTradingBlock());
+        assertTrue(testTradingBlock.containTradingBlock(Quinn_Hughes));
+
+        // adding Elias Petterson to the current team
+        testCurrentTeam.addPlayerToCurrTeam(Elias_Petterson);
+
+        // adding Elias Pettersson again
+        testCurrentTeam.addPlayerToCurrTeam(Elias_Petterson);
+
+        // testing to make sure there is only one player in current list
+        assertEquals(1, testCurrentTeam.sizeCurrTeam());
+        assertTrue(testCurrentTeam.containCurrTeam(Elias_Petterson));
+    }
+
+    @Test
+    public void testCantRemoveSinceNoPlayerIsThere() {
+        // adding Quinn Hughes to trading block and Elias Pettersson to Current Team
+        testCurrentTeam.addPlayerToCurrTeam(Quinn_Hughes);
+        testTradingBlock.addPlayerToTradingBlock(Elias_Petterson);
+
+        // returning Elias Pettersson since he can't be removed from current team since hes not there
+        assertTrue(Elias_Petterson == testCurrentTeam.removePlayerFromCurrTeam(Elias_Petterson));
+
+        // returning Quinn Hughes since he can't be removed from trading block since hes not there
+        assertTrue(Quinn_Hughes == testTradingBlock.removePlayerFromTradingBlock(Quinn_Hughes));
+    }
+
+    @Test
     public void testGetTradingBlock() {
         // adding players to the trading block
         testTradingBlock.addPlayerToTradingBlock(Elias_Petterson);
@@ -164,4 +200,5 @@ public class TestGeneralManager {
         assertEquals(testCurrentTeam.sizeCurrTeam(), 1);
         assertTrue(testCurrentTeam.containCurrTeam(player));
      }
+
 }

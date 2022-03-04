@@ -20,7 +20,6 @@ public class TeamFranchise implements Writable {
     ArrayList<Player> canucks;
 
     public TeamFranchise(GeneralManager gm, String teamName, String teamlocation) {
-        // canucks = new ArrayList<Player>();
         this.gm = new GeneralManager();
         this.teamName = "Canucks";
         this.teamlocation = "Vancouver";
@@ -32,7 +31,7 @@ public class TeamFranchise implements Writable {
     public void gmAddToTradingBlockFromCurrTeam() {
         ArrayList<Player> playersToRemove = new ArrayList<>();
         for (Player p : gm.getCurrTeam()) {
-            if (p.getStatus() == "Available") {
+            if (p.getStatus().equals("Available")) {
                 playersToRemove.add(p);
                 gm.addPlayerToTradingBlock(p);
             }
@@ -48,14 +47,13 @@ public class TeamFranchise implements Writable {
     public void gmAddToCurrRosterFromTradingBlock() {
         ArrayList<Player> playersToRemove = new ArrayList<>();
         for (Player p : gm.getTradingBlock()) {
-            if (p.getStatus() == "Not Available") {
+            if (p.getStatus().equals("Not Available")) {
                 playersToRemove.add(p);
                 gm.addPlayerToCurrTeam(p);
             }
         }
         for (Player p : playersToRemove) {
             gm.removePlayerFromTradingBlock(p);
-            //System.out.println("trading block: " + gm.getTradingBlock());
         }
     }
 
@@ -91,7 +89,6 @@ public class TeamFranchise implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        //json.put("name", name);
         json.put("tradingBlock", tradingBlockToJson());
         json.put("currTeam", currTeamToJson());
         return json;
