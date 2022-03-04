@@ -1,0 +1,25 @@
+{
+    "tradingBlock": [
+        {
+            "puckSkills": 3,
+            "skating": 2,
+            "name": "Bo Horvat",
+            "shooting": 1,
+            "hockeyIQ": 5,
+            "position": "Forward",
+            "competeLevel": 4,
+            "status": "Available"
+        },
+        {
+            "puckSkills": 7,
+            "skating": 8,
+            "name": "TJ Brodie",
+            "shooting": 9,
+            "hockeyIQ": 5,
+            "position": "Defense",
+            "competeLevel": 6,
+            "status": "Not Available"
+        }
+    ],
+    "currTeam": []
+}

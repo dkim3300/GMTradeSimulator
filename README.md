@@ -27,19 +27,25 @@ estimates the costs required to obtain them.
 
 **NHL Trade Simulator Application**
 
-As a user, I want to be able to view all the players on the current roster
+As a user, I want to be able to view all the players on the current roster and trading list
 
-As a user, I want to be able to view all the players on the trading block list 
+As a user, I want to be able to view players' specific attributes such as their availability status from either 
+the current roster or trading block list
 
-As a user, I want to be able to view a player's status from either the current roster or trading block list
-
-As a user, I want to be able to add player's with an "available" status to the trading block list
-
-As a user, I want to be able to add player's with a "not available" status to the current roster
+As a user, I want to be able to add players between current roster and the trading block depending on their
+availability status
 
 As a user, I want to be able to make new players and add them into the current roster
 
-As a user, I want to be able to quit the game 
+As a user, I want to be able to quit the game
+
+As a user, I want to be able to edit any players in the game
+
+As a user, I want to be able to save the current roster and the trading block 
+
+As a user, I want to be to load my current team and trading list
+
+
 
 
 

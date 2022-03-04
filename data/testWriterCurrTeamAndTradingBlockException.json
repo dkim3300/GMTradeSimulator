@@ -1,0 +1,22 @@
+{
+    "tradingBlock": [{
+        "puckSkills": 6,
+        "skating": 5,
+        "name": "Chris Tanev",
+        "shooting": 4,
+        "hockeyIQ": 8,
+        "position": "Defense",
+        "competeLevel": 7,
+        "status": "Not Available"
+    }],
+    "currTeam": [{
+        "puckSkills": 3,
+        "skating": 2,
+        "name": "Tanner Pearson",
+        "shooting": 1,
+        "hockeyIQ": 5,
+        "position": "Forward",
+        "competeLevel": 4,
+        "status": "Available"
+    }]
+}

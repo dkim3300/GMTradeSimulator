@@ -1,0 +1,46 @@
+{
+    "tradingBlock": [
+        {
+            "puckSkills": 3,
+            "skating": 4,
+            "name": "Nils Hoglander",
+            "shooting": 5,
+            "hockeyIQ": 1,
+            "position": "Forward",
+            "competeLevel": 2,
+            "status": "Available"
+        },
+        {
+            "puckSkills": 6,
+            "skating": 6,
+            "name": "Jack Rathbone",
+            "shooting": 6,
+            "hockeyIQ": 6,
+            "position": "Defense",
+            "competeLevel": 6,
+            "status": "Available"
+        }
+    ],
+    "currTeam": [
+        {
+            "puckSkills": 8,
+            "skating": 9,
+            "name": "Auston Matthews",
+            "shooting": 8,
+            "hockeyIQ": 8,
+            "position": "Forward",
+            "competeLevel": 9,
+            "status": "Not Available"
+        },
+        {
+            "puckSkills": 7,
+            "skating": 6,
+            "name": "William Nylander",
+            "shooting": 7,
+            "hockeyIQ": 7,
+            "position": "Forward",
+            "competeLevel": 6,
+            "status": "Available"
+        }
+    ]
+}

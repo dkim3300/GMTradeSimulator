@@ -1,0 +1,87 @@
+{
+  "currTeam": [
+    {
+      "name": "Adam Fox",
+      "position": "Defense",
+      "status": "Not Available",
+      "shooting": 9,
+      "skating": 9,
+      "puckSkills": 9,
+      "competeLevel": 9,
+      "hockeyIQ": 9
+    },
+    {
+      "name": "JT Miller",
+      "position": "Forward",
+      "status": "Not Available",
+      "shooting": 8,
+      "skating": 8,
+      "puckSkills": 8,
+      "competeLevel": 9,
+      "hockeyIQ": 9
+    },
+    {
+      "name": "Jack Campbell",
+      "position": "Goalie",
+      "status": "Available",
+      "shooting": 7,
+      "skating": 8,
+      "puckSkills": 7,
+      "competeLevel": 8,
+      "hockeyIQ": 7
+    },
+    {
+      "name": "Sam Girard",
+      "position": "Defense",
+      "status": "Not Available",
+      "shooting": 7,
+      "skating": 6,
+      "puckSkills": 5,
+      "competeLevel": 5,
+      "hockeyIQ": 6
+    }
+
+  ],
+  "tradingBlock": [
+    {
+      "name": "Brock Boeser",
+      "position": "Forward",
+      "status": "Not Available",
+      "shooting": 1,
+      "skating": 2,
+      "puckSkills": 3,
+      "competeLevel": 4,
+      "hockeyIQ": 5
+    },
+    {
+      "name": "Jay Beagle",
+      "position": "Forward",
+      "status": "Available",
+      "shooting": 9,
+      "skating": 8,
+      "puckSkills": 7,
+      "competeLevel": 6,
+      "hockeyIQ": 5
+    },
+    {
+      "name": "Conor Garland",
+      "position": "Forward",
+      "status": "Not Available",
+      "shooting": 6,
+      "skating": 5,
+      "puckSkills": 4,
+      "competeLevel": 3,
+      "hockeyIQ": 2
+    },
+    {
+      "name": "Cale Makar",
+      "position": "Defense",
+      "status": "Not Available",
+      "shooting": 9,
+      "skating": 9,
+      "puckSkills": 9,
+      "competeLevel": 9,
+      "hockeyIQ": 9
+    }
+  ]
+}

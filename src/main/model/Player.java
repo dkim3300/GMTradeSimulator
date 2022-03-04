@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a player's name, position, hockey attributes, value
-public class Player {
+public class Player implements Writable {
     private String name;                     // name of player
     private String position;                 // player's position
     private String status;                   // player's status
@@ -27,6 +30,21 @@ public class Player {
         this.competeLevel = 0;
         this.hockeyIQ = 0;
     }
+
+    // Effects: creating constructor for all fields
+    public Player(String playerName, String playerPosition, String status, int shooting, int skating,
+                  int puckSkills, int competelevel, int hockeyIQ) {
+        this.name = playerName;
+        this.position = playerPosition;
+        this.status = status;
+        this.shooting = shooting;
+        this.skating = skating;
+        this.puckSkills = puckSkills;
+        this.competeLevel = competelevel;
+        this.hockeyIQ = hockeyIQ;
+    }
+
+
 
     // Modifies: this
     // Effects: adjusts a player's rating
@@ -123,6 +141,20 @@ public class Player {
     // Effect: return player's position
     public String getPosition() {
         return position;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("position", position);
+        json.put("status", status);
+        json.put("shooting", shooting);
+        json.put("skating", skating);
+        json.put("puckSkills", puckSkills);
+        json.put("competeLevel", competeLevel);
+        json.put("hockeyIQ", hockeyIQ);
+        return json;
     }
 
 }

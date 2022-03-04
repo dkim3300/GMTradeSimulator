@@ -1,12 +1,18 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class TeamFranchise {
+public class TeamFranchise implements Writable {
 
     private RosterManagement rostermgmt;
 
     private GeneralManager gm;
+
+    private String nm;
 
     private String teamName;
     private String teamlocation;
@@ -81,4 +87,37 @@ public class TeamFranchise {
     // -- will be for phase 2 ---
     //public void counterTrade() {
     //}
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        //json.put("name", name);
+        json.put("tradingBlock", tradingBlockToJson());
+        json.put("currTeam", currTeamToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray currTeamToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player p : gm.getCurrTeam()) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray tradingBlockToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player p : gm.getTradingBlock()) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
+
+
 }

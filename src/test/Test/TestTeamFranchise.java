@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestTeamFranchise {
 
+    private String nm;
+
     ArrayList<Player> tradingBlock;
     ArrayList<Player> currTeam;
 

@@ -3,10 +3,16 @@ package ui;
 import model.GeneralManager;
 import model.Player;
 import model.TeamFranchise;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FranchiseApp {
+
+    private static final String GM_Store = "./data/GMteam.json";
 
     private GeneralManager gm;
 
@@ -18,13 +24,19 @@ public class FranchiseApp {
 
     private String teamName;
     private String teamLocation;
+    private String nm;
 
     private TeamFranchise canucks;
 
     private Scanner input;
 
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
     // Effects: runs application and initializes
-    public FranchiseApp() {
+    public FranchiseApp() throws FileNotFoundException {
+        jsonWriter = new JsonWriter(GM_Store);
+        jsonReader = new JsonReader(GM_Store);
         initialize();
         runFranchise();
     }
@@ -64,6 +76,10 @@ public class FranchiseApp {
             pullOutTradingBlock();
         } else if (optiontoClickFrom.equals("m")) {
             makePlayer();
+        } else if (optiontoClickFrom.equals("s")) {
+            saveGMRosters();
+        } else if (optiontoClickFrom.equals("l")) {
+            loadGMRosters();
         } else {
             System.out.println("System Not Valid");
         }
@@ -212,7 +228,7 @@ public class FranchiseApp {
         status = input.next();
         status = status.toLowerCase();
 
-        if (status == "Available") {
+        if (status == "Available") {      // how do I debug this? --> ask TA
             return true;
         } else {
             return false;
@@ -249,6 +265,8 @@ public class FranchiseApp {
         System.out.println("\tc -> pull out current roster");
         System.out.println("\tt -> pull out trading block");
         System.out.println("\tm -> make player");
+        System.out.println("\ts -> save current team and roster to file");   // just added
+        System.out.println("\tl -> load current team and roster from file");  // just added
         System.out.println("\tq -> quit\n");
     }
 
@@ -277,4 +295,29 @@ public class FranchiseApp {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
     }
+
+    // EFFECTS: saves the GM rosters to file
+    public void saveGMRosters() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(canucks);
+            jsonWriter.close();
+            System.out.println("Saved " + "Roster" + " to " + GM_Store);  // want to add gm name here;
+        } catch (FileNotFoundException e) {
+            System.out.println("Not able to write file: " + GM_Store);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads GM rosters from file
+    public void loadGMRosters() {
+        try {
+            canucks = jsonReader.read();
+            System.out.println("Loaded " + "Roster" + " from " + GM_Store);   // want to add gm name
+        } catch (IOException e) {
+            System.out.println("Not able to read from file: " + GM_Store);
+        }
+    }
+
 }
+

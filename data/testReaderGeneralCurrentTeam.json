@@ -1,0 +1,35 @@
+{
+  "tradingBlock": [],
+  "currTeam": [
+    {
+      "name": "Connor McDavid",
+      "position": "Forward",
+      "status": "Available",
+      "shooting": 0,
+      "skating": 0,
+      "puckSkills": 0,
+      "competeLevel": 0,
+      "hockeyIQ": 0
+    },
+    {
+      "name": "Leon Draisatl",
+      "position": "Forward",
+      "status": "Available",
+      "shooting": 0,
+      "skating": 0,
+      "puckSkills": 0,
+      "competeLevel": 0,
+      "hockeyIQ": 0
+    },
+    {
+      "name": "Thatcher Demko",
+      "position": "Goalie",
+      "status": "Available",
+      "shooting": 0,
+      "skating": 0,
+      "puckSkills": 0,
+      "competeLevel": 0,
+      "hockeyIQ": 0
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestGeneralManager {
 
+    private String nm;
+
     GeneralManager testCurrentTeam;
     GeneralManager testTradingBlock;
 
@@ -73,7 +75,7 @@ public class TestGeneralManager {
         testCurrentTeam.addPlayerToCurrTeam(Quinn_Hughes);
         assertTrue(testCurrentTeam.getCurrTeam().contains(Quinn_Hughes));
 
-        // checking if correcct number of players have been added players has been added to the current team
+        // checking if correct number of players have been added players has been added to the current team
         assertEquals(2, testCurrentTeam.sizeCurrTeam());
         assertFalse(testCurrentTeam.sizeCurrTeam() == 3);
 

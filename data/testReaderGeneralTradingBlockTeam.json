@@ -1,0 +1,45 @@
+{
+  "currTeam": [],
+  "tradingBlock": [
+    {
+      "name": "Quinn Hughes",
+      "position": "Defense",
+      "status": "Not Available",
+      "shooting": 1,
+      "skating": 2,
+      "puckSkills": 3,
+      "competeLevel": 4,
+      "hockeyIQ": 5
+    },
+    {
+      "name": "Jack Hughes",
+      "position": "Forward",
+      "status": "Available",
+      "shooting": 9,
+      "skating": 8,
+      "puckSkills": 7,
+      "competeLevel": 6,
+      "hockeyIQ": 5
+    },
+    {
+      "name": "Elias Pettersson",
+      "position": "Forward",
+      "status": "Not Available",
+      "shooting": 6,
+      "skating": 5,
+      "puckSkills": 4,
+      "competeLevel": 3,
+      "hockeyIQ": 2
+    },
+    {
+      "name": "John Gibson",
+      "position": "Goalie",
+      "status": "Available",
+      "shooting": 9,
+      "skating": 1,
+      "puckSkills": 8,
+      "competeLevel": 2,
+      "hockeyIQ": 7
+    }
+  ]
+}

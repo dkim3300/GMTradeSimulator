@@ -1,0 +1,35 @@
+{
+    "tradingBlock": [],
+    "currTeam": [
+        {
+            "puckSkills": 3,
+            "skating": 2,
+            "name": "John Doe",
+            "shooting": 1,
+            "hockeyIQ": 5,
+            "position": "Forward",
+            "competeLevel": 4,
+            "status": "Available"
+        },
+        {
+            "puckSkills": 7,
+            "skating": 8,
+            "name": "Brent Burns",
+            "shooting": 9,
+            "hockeyIQ": 5,
+            "position": "Defense",
+            "competeLevel": 6,
+            "status": "Not Available"
+        },
+        {
+            "puckSkills": 1,
+            "skating": 2,
+            "name": "Ryan Miller",
+            "shooting": 1,
+            "hockeyIQ": 1,
+            "position": "Goalie",
+            "competeLevel": 2,
+            "status": "Available"
+        }
+    ]
+}

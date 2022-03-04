@@ -1,16 +1,36 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 public class GeneralManager {
+
+    //private String name;
 
     private ArrayList<Player> tradingBlock;      // Players on the trading block
     private ArrayList<Player> currTeam;          // Current players on this team
 
     public GeneralManager() {
+        //this.name = name;
         tradingBlock = new ArrayList<>();
         currTeam = new ArrayList<>();
     }
+/*
+    public GeneralManager(String name) {
+        this.name = name;
+        tradingBlock = new ArrayList<>();
+        currTeam = new ArrayList<>();
+    }
+
+ */
+
+    // Effects: return the name of the gm
+    //public String getName() {
+    //    return name;
+    //}
 
     // Modifies: this
     // Effects: adds player to the trading block if they are not already there
@@ -75,4 +95,38 @@ public class GeneralManager {
     public int sizeCurrTeam() {
         return currTeam.size();
     }
+/*
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        //json.put("name", name);
+        json.put("tradingBlock", tradingBlockToJson());
+        json.put("currTeam", currTeamToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray currTeamToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player p : currTeam) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray tradingBlockToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player p : tradingBlock) {
+            jsonArray.put(p.toJson());
+        }
+
+        return jsonArray;
+    }
+
+ */
+
 }
