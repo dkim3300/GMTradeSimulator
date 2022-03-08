@@ -97,7 +97,7 @@ public class Player implements Writable {
     // REQUIRES: ratings of players >= 0
     // MODIFIES: this
     // EFFECTS: returns the overall ratings of players
-    public int getOverallRating() {
+    public double getOverallRating() {
         return ((shooting + skating + puckSkills + competeLevel + hockeyIQ) / 5);
     }
 
