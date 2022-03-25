@@ -549,33 +549,58 @@ public class FranchiseApp extends JFrame implements ActionListener {
         }
     }
 
-    @SuppressWarnings("checkstyle:MethodLength")
-    public void initializeGraphics() {                     // using 24 lines
-        currTeamButton(jbuttonCurrTeam, "Current Roster");
-        tradingBlockButton(jbuttonTradingBlock, "Trading Block");
-        editPlayerButton(jbuttonEditPlayer, "Edit Player");
-        makePlayerButton(jbuttonMakePlayer, "Make Player");
+    // EFFECTS: initializing graphics (GUI)
+    public void initializeGraphics() {
+        creatingButtonHelperMethod();
         jlabelAttributesSet(jlabelAttributes);
         viewAttributesSetting(viewAttributes, "View Attributes");
         jlabelOptionsSet(jlabelOptions);
         attributePanelSet(jlabelAttributes);
         loadAndSaveItem();
-        menuFileAdd();
-        menuBarAdd();
+        menuAdd();
         jframeSet();
         franchiseOptionsPanel(jlabelOptions);
         jpanelCurrRosterSet(jpanelCurrRoster, 210);
         currRosterLabelSet(currRosterLabel);
         jpanelButtonsSet();
-        moveToTradingBlockSet(moveToTradingBlock, "Move To Trading Block", jpanelButtons);
-        moveToCurrRosterSet(moveToCurrentRoster, "Move To Current Roster", jpanelButtons);
+        moveToTradingBlockAndCurrTeamMethods();
         allPlayersButtonSet(allPlayersButton, "All Players", jpanelFranchiseOptions);
-        tradingBlockPanelSet(jpanelTradingBlock, 720);
-        tradingBlockLabelSet(currRosterLabel, tradingBlockLabel, jpanelTradingBlock);
-        allPlayersFranchisePanelSet(allPlayersFranchisePanel, 975);
-        allPlayersFranchiseLabelSet(currRosterLabel, allPlayersFranchiseLabel, allPlayersFranchisePanel);
+        tradingBlockPanelSetUp();
+        allPlayerFranchisePanelSetUp();
         panelAddingJlists();
         jframeAdd();
+    }
+
+    // EFFECTS: helper method to create methods for currTeam, tradingBlock, edit player, and make player
+    private void creatingButtonHelperMethod() {
+        currTeamButton(jbuttonCurrTeam, "Current Roster");
+        tradingBlockButton(jbuttonTradingBlock, "Trading Block");
+        editPlayerButton(jbuttonEditPlayer, "Edit Player");
+        makePlayerButton(jbuttonMakePlayer, "Make Player");
+    }
+
+    // EFFECTS: performing methods that set up tradingBlock Panel
+    private void tradingBlockPanelSetUp() {
+        tradingBlockPanelSet(jpanelTradingBlock, 720);
+        tradingBlockLabelSet(currRosterLabel, tradingBlockLabel, jpanelTradingBlock);
+    }
+
+    // EFFECTS: performing methods that set up allPlayerFranchise Panel
+    private void allPlayerFranchisePanelSetUp() {
+        allPlayersFranchisePanelSet(allPlayersFranchisePanel, 975);
+        allPlayersFranchiseLabelSet(currRosterLabel, allPlayersFranchiseLabel, allPlayersFranchisePanel);
+    }
+
+    // EFFECTS: performing moveToTradingBlock and moveToCurrTeam Methods
+    private void moveToTradingBlockAndCurrTeamMethods() {
+        moveToTradingBlockSet(moveToTradingBlock, "Move To Trading Block", jpanelButtons);
+        moveToCurrRosterSet(moveToCurrentRoster, "Move To Current Roster", jpanelButtons);
+    }
+
+    // EFFECTS: performing menfuFileAdd and menuBarrAdd methods
+    private void menuAdd() {
+        menuFileAdd();
+        menuBarAdd();
     }
 
     // MODIFIES: this

@@ -28,7 +28,7 @@ public class ViewAttributesDialog {
 
     // MODIFIES: this
     // EFFECTS: gets the master list consisting of all players in the franchise application. If a player selected
-    //          from the Jlist in the FranchiseApp Class equals a name from the master list, then the matched player
+    //          from the j-list in the FranchiseApp Class equals a name from the master list, then the matched player
     //          is added to the default model in FranchiseApp class
     public void showAttributes(FranchiseApp franchiseApp) {
 
@@ -49,8 +49,8 @@ public class ViewAttributesDialog {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds selected player's name, status, posiiton, skating rating, shooting rating, puck skills rating
-    //          compete level rating, hockey IQ rating, and the overal rating of the players
+    // EFFECTS: adds selected player's name, status, position, skating rating, shooting rating, puck skills rating
+    //          compete level rating, hockey IQ rating, and the overall rating of the players
     private void addElement(FranchiseApp franchiseApp, Player p) {
 
         franchiseApp.getAttributesPanelTwo().add(pickedPLayerLabel(p));
