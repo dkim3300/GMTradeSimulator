@@ -1,20 +1,12 @@
 package ui;
 
-import model.GeneralManager;
 import model.Player;
-import model.TeamFranchise;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentTeamDialog {
 
     private FranchiseApp franchiseApp;
-
-    JPanel currTeamPanel = new JPanel();
 
     // This is where all players current on the roster list will be added to a string array then added to a
     // default model in the FranchiseApp class. With each new addition of players, edited players, or movement of

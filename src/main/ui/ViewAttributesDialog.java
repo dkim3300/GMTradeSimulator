@@ -12,16 +12,15 @@ public class ViewAttributesDialog {
     private JPanel attributesPanel = new JPanel();
     private JLabel attributesLabel = new JLabel();
     private JPanel totalAttributesPanel = new JPanel();
-    private ImageIcon jackHughesImage = new ImageIcon("./Photos/Jack_Hughes.png");
 
     private FranchiseApp franchiseApp;
 
-    JPanel emptyPersonPanel = emptyPerson("./Photos/Empty_Person_Image.png", 195, 150);
-    JPanel quinnHughesPanel = quinnHughes("./Photos/Quinn_Hughes.png", 195, 150);
-    JPanel austonMatthrewsPanel = austonMatthews("./Photos/Auston_Matthews.png", 195, 150);
-    JPanel brockBoeserPanel = brockBoeser("./Photos/Brock_Boeser.png", 195, 150);
-    JPanel eliasPetterssonPanel = eliasPettersson("./Photos/Elias_Pettersson.png", 195, 150);
-    JPanel jackHughesPanel = jackHughes("./Photos/Jack_Hughes.png", 195, 150);
+    private JPanel emptyPersonPanel = emptyPerson("./Photos/Empty_Person_Image.png", 195, 150);
+    private JPanel quinnHughesPanel = quinnHughes("./Photos/Quinn_Hughes.png", 195, 150);
+    private JPanel austonMatthrewsPanel = austonMatthews("./Photos/Auston_Matthews.png", 195, 150);
+    private JPanel brockBoeserPanel = brockBoeser("./Photos/Brock_Boeser.png", 195, 150);
+    private JPanel eliasPetterssonPanel = eliasPettersson("./Photos/Elias_Pettersson.png", 195, 150);
+    private JPanel jackHughesPanel = jackHughes("./Photos/Jack_Hughes.png", 195, 150);
 
     public ViewAttributesDialog(FranchiseApp franchiseApp) {
         this.franchiseApp = franchiseApp;

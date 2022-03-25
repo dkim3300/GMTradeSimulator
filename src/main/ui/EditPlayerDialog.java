@@ -1,13 +1,9 @@
 package ui;
 
-import jdk.nashorn.internal.scripts.JO;
-import model.GeneralManager;
+
 import model.Player;
-import model.TeamFranchise;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,23 +1,14 @@
 package ui;
 
-import com.sun.tools.javah.Gen;
-import model.GeneralManager;
+
 import model.Player;
 import model.TeamFranchise;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TradingBlockDialog {
 
     private FranchiseApp franchiseApp;
-    private GeneralManager gm;
-    private TeamFranchise canucks;
-
-    JPanel tradingBlockPanel = new JPanel();
 
     // This is where the players in the trading block will be displayed on a panel when the "Trading Block" button
     // is clicked. With each new addition of players, edited players, or movement of players between the trading block

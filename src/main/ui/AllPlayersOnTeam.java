@@ -1,12 +1,10 @@
 package ui;
 
 import model.Player;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//
 public class AllPlayersOnTeam {
 
     private JPanel attributesPanel = new JPanel();

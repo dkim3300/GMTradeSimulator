@@ -8,32 +8,26 @@ import javax.swing.*;
 public class MakePlayerDialog {
 
     private FranchiseApp franchiseApp;
-    private TeamFranchise canucks;
     private Player newPlayer;
 
-    JFrame frame = new JFrame();
-    JLabel labelTitle = new JLabel();
-    JLabel positionTitle = new JLabel();
-    JLabel statusTitle = new JLabel();
-    JLabel shootingTitle = new JLabel();
-    JLabel skatingTitle = new JLabel();
-    JLabel puckSkillTitle = new JLabel();
-    JLabel hockeyIQTitle = new JLabel();
-    JLabel completeLevelTitle = new JLabel();
-    JPanel panel = new JPanel();
-    JPanel fullPanel = new JPanel();
-    JButton upDateButton = new JButton();
+    private JLabel labelTitle = new JLabel();
+    private JLabel positionTitle = new JLabel();
+    private JLabel statusTitle = new JLabel();
+    private JLabel shootingTitle = new JLabel();
+    private JLabel skatingTitle = new JLabel();
+    private JLabel puckSkillTitle = new JLabel();
+    private JLabel hockeyIQTitle = new JLabel();
+    private JLabel completeLevelTitle = new JLabel();
+    private JPanel panel = new JPanel();
 
-    JTextField playerNameInput = new JTextField();
-    JTextField playerPositionInput = new JTextField();
-    JTextField statusInput = new JTextField();
-    JTextField shootingInput = new JTextField();
-    JTextField skatingInput = new JTextField();
-    JTextField puckSkillsInput = new JTextField();
-    JTextField hockeyIQInput = new JTextField();
-    JTextField competeLevelInput = new JTextField();
-    Box boxPanel = Box.createVerticalBox();
-    Box boxTitle = Box.createHorizontalBox();
+    private JTextField playerNameInput = new JTextField();
+    private JTextField playerPositionInput = new JTextField();
+    private JTextField statusInput = new JTextField();
+    private JTextField shootingInput = new JTextField();
+    private JTextField skatingInput = new JTextField();
+    private JTextField puckSkillsInput = new JTextField();
+    private JTextField hockeyIQInput = new JTextField();
+    private JTextField competeLevelInput = new JTextField();
 
     // This is where a new player is created when the user clicks the "Make Player" button. This class will
     // create a new player with the user inputs and update the current roster
