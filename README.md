@@ -45,6 +45,17 @@ As a user, I want to be able to save the current roster and the trading block
 
 As a user, I want to be to load my current team and trading list
 
+As a user, I want to be able to make players and add the player to the current roster by clicking on the "Make Player"
+           button
+
+As a user, I want to be able to edit players by clicking on the "Edit Player" button
+
+As a user, I want to be able to display attributes of the players in the application
+
+As a user, I want to be able to load and save the state of my application by clicking the "Save" and "Load" options
+
+
+
 
 
 

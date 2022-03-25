@@ -80,19 +80,15 @@ public class Player implements Writable {
         this.status = "Available";
     }
 
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     // MODIFIES: this
     // EFFECTS: adjusts a player's rating
     public void setStatusNotAvailable() {
         this.status = "Not Available";
     }
-
-    // public int valueOfPlayer() {
-        // Player valuation will be based on in 4 quartiles: 100, 90, 80, 70, 60
-        // - 1) 100 will represent the most valuable: overall rating is >= 95
-        // - 2) 90 will represent valuable: overall rating is  95 > n >= 85
-        // - 3) 80 will represent mediocre value: overall rating is 85 > n > 75
-        // - 4) 70 will represent low value: overall rating is 75 > n
-    // }
 
     // REQUIRES: ratings of players >= 0
     // MODIFIES: this

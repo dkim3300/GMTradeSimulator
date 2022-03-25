@@ -6,12 +6,16 @@ import model.TeamFranchise;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FranchiseApp {
+public class FranchiseApp extends JFrame implements ActionListener {
 
     private static final String GM_Store = "./data/GMteam.json";
 
@@ -33,10 +37,62 @@ public class FranchiseApp {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    private JButton jbuttonCurrTeam = new JButton();
+    private JButton jbuttonMakePlayer = new JButton();
+    private JButton jbuttonEditPlayer = new JButton();
+    private JButton jbuttonTradingBlock = new JButton();
+    private JButton moveToTradingBlock = new JButton();
+    private JButton moveToCurrentRoster = new JButton();
+    private JButton viewAttributes = new JButton();
+    private JButton allPlayersButton = new JButton();
+    private JMenuBar menuBar = new JMenuBar();
+
+    private JMenu menuFile = new JMenu("File");
+    private JMenu menuEdit = new JMenu("Edit");
+    private JMenu menuHelp = new JMenu("Help");
+
+    private JMenuItem loadItem = new JMenuItem("Load");
+    private JMenuItem saveItem = new JMenuItem("Save");
+
+    JPanel jpanelFranchiseOptions = new JPanel();
+    JPanel jpanelCurrRoster = new JPanel();
+    JPanel jpanelButtons = new JPanel();
+    JPanel jpanelTradingBlock = new JPanel();
+    JFrame jframe = new JFrame();
+    JPanel attributesPanel = new JPanel();
+    JPanel attributesPanelTwo = new JPanel();
+    JPanel allPlayersFranchisePanel = new JPanel();
+    JLabel jlabelAttributes = new JLabel("Player Attributes");
+    JLabel jlabelOptions = new JLabel("Franchise Options");
+    JLabel currRosterLabel = new JLabel("Current Roster");
+    JLabel tradingBlockLabel = new JLabel("Trading Block");
+    JLabel allPlayersFranchiseLabel = new JLabel("All Franchise Players");
+
+    DefaultListModel rosterModelAllPlayer = new DefaultListModel();
+    JList allPlayersFranchise = new JList(rosterModelAllPlayer);
+
+    DefaultListModel rosterModelPlayerAttributes = new DefaultListModel();
+    JList playerAttributesList = new JList(rosterModelPlayerAttributes);
+
+    DefaultListModel rosterModelCurrTeam = new DefaultListModel();
+    JList currRosterJList = new JList(rosterModelCurrTeam);
+
+    DefaultListModel rosterModelTradingBlock = new DefaultListModel();
+    JList tradingRosterJList = new JList(rosterModelTradingBlock);
+
+    DefaultListModel rosterModelPlayerAttributesTwo = new DefaultListModel();
+    JList playerImageList = new JList(rosterModelPlayerAttributesTwo);
+
+    CurrentTeamDialog currentTeamDialog = new CurrentTeamDialog(this);
+    TradingBlockDialog tradingBlockDialog = new TradingBlockDialog(this);
+    ViewAttributesDialog viewAttributesDialog = new ViewAttributesDialog(this);
+    AllPlayersOnTeam allPlayersOnTeam = new AllPlayersOnTeam(this);
+
     // EFFECTS: runs application and initializes
     public FranchiseApp() throws FileNotFoundException {
         jsonWriter = new JsonWriter(GM_Store);
         jsonReader = new JsonReader(GM_Store);
+        initializeGraphics();
         initialize();
         runFranchise();
     }
@@ -63,7 +119,6 @@ public class FranchiseApp {
                 execute(optionsToClickFrom);
             }
         }
-
         System.out.println("GoodBye!");
     }
 
@@ -209,10 +264,10 @@ public class FranchiseApp {
 
     // MODIFIES: this
     // EFFECTS: makes a new player and added into the current roster
-    private void makePlayer() {     // move makePlayer into TeamFranchise
-        String nm = "";             //   and move chooseName and choosePosition as params to makePlayer
+    public void makePlayer() {        // move makePlayer into TeamFranchise
+        String nm = "";               //   and move chooseName and choosePosition as params to makePlayer
         String p = "";
-        String status = "";         // also make edit player and do same thing
+        String status = "";           // also make edit player and do same thing
 
         Player player1;
 
@@ -346,13 +401,9 @@ public class FranchiseApp {
         int competeLevel = 0;
 
         p.addShootingRating(shooting(shooting));
-
         p.addSkatingRating(skating(skating));
-
         p.addPuckSkillsRating(puckSkills(puckSkills));
-
         p.addHockeyIQRating(hockeyIQ(hockeyIQ));
-
         p.addCompeteLevelRating(completeLevel(competeLevel));
 
         System.out.println("--------");
@@ -410,7 +461,7 @@ public class FranchiseApp {
 
     }
 
-    // EFFECTS: setting the player's hockey IQ attribute from integer, iq
+    // EFFECTS: setting the player's hockey IQ attributes from integer, iq
     public int hockeyIQ(int iq) {
 
         System.out.println("Set hockey IQ rating between range [1,5]");
@@ -468,6 +519,11 @@ public class FranchiseApp {
         input.useDelimiter("\n");
     }
 
+    // GETTER
+    public TeamFranchise getTeam() {
+        return canucks;
+    }
+
     // Referencing WorkRoom
     // EFFECTS: saves the GM rosters to file
     public void saveGMRosters() {
@@ -491,6 +547,377 @@ public class FranchiseApp {
         } catch (IOException e) {
             System.out.println("Not able to read from file: " + GM_Store);
         }
+    }
+
+    @SuppressWarnings("checkstyle:MethodLength")
+    public void initializeGraphics() {                     // using 24 lines
+        currTeamButton(jbuttonCurrTeam, "Current Roster");
+        tradingBlockButton(jbuttonTradingBlock, "Trading Block");
+        editPlayerButton(jbuttonEditPlayer, "Edit Player");
+        makePlayerButton(jbuttonMakePlayer, "Make Player");
+        jlabelAttributesSet(jlabelAttributes);
+        viewAttributesSetting(viewAttributes, "View Attributes");
+        jlabelOptionsSet(jlabelOptions);
+        attributePanelSet(jlabelAttributes);
+        loadAndSaveItem();
+        menuFileAdd();
+        menuBarAdd();
+        jframeSet();
+        franchiseOptionsPanel(jlabelOptions);
+        jpanelCurrRosterSet(jpanelCurrRoster, 210);
+        currRosterLabelSet(currRosterLabel);
+        jpanelButtonsSet();
+        moveToTradingBlockSet(moveToTradingBlock, "Move To Trading Block", jpanelButtons);
+        moveToCurrRosterSet(moveToCurrentRoster, "Move To Current Roster", jpanelButtons);
+        allPlayersButtonSet(allPlayersButton, "All Players", jpanelFranchiseOptions);
+        tradingBlockPanelSet(jpanelTradingBlock, 720);
+        tradingBlockLabelSet(currRosterLabel, tradingBlockLabel, jpanelTradingBlock);
+        allPlayersFranchisePanelSet(allPlayersFranchisePanel, 975);
+        allPlayersFranchiseLabelSet(currRosterLabel, allPlayersFranchiseLabel, allPlayersFranchisePanel);
+        panelAddingJlists();
+        jframeAdd();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adding JLists to JPanel
+    private void panelAddingJlists() {
+        allPlayersFranchisePanel.add(allPlayersFranchise);
+        jpanelCurrRoster.add(currRosterJList);
+        jpanelTradingBlock.add(tradingRosterJList);
+    }
+
+    // EFFECTS: conducting AccActionListener to the load and save JMenu
+    private void loadAndSaveItem() {
+        loadItem.addActionListener(this::actionPerformed);
+        saveItem.addActionListener(this::actionPerformed);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adding JSwing elements to JFrame
+    private void jframeAdd() {
+        attributesPanelTwo.setBounds(210, 335, 1015, 190);
+        attributesPanelTwo.setBackground(Color.lightGray);
+        attributesPanelTwo.add(playerImageList);
+
+        jframe.add(jpanelFranchiseOptions);
+        jframe.add(jpanelCurrRoster);
+        jframe.add(jpanelButtons);
+        jframe.add(jpanelTradingBlock);
+        jframe.add(allPlayersFranchisePanel);
+        jframe.add(attributesPanel);
+        jframe.add(attributesPanelTwo);
+        jframe.setVisible(true);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up All Player Franchise JPanel
+    private void allPlayersFranchisePanelSet(JPanel allPlayersFranchisePanel, int i) {
+        allPlayersFranchisePanel.setBounds(i, 5, 250, 250);
+        allPlayersFranchisePanel.setBackground(Color.white);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Trading Block JPanel
+    private void tradingBlockPanelSet(JPanel jpanelTradingBlock, int i) {
+        jpanelTradingBlock.setBounds(i, 5, 250, 250);
+        jpanelTradingBlock.setBackground(Color.white);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up All Players JButton and adds image to Franchise Option Panel
+    private void allPlayersButtonSet(JButton allPlayersButton, String s, JPanel jpanelFranchiseOptions) {
+        ImageIcon canucksIcon = new ImageIcon("./Photos/Canucks_Logo.png");
+        Image canucksImage = canucksIcon.getImage().getScaledInstance(135, 115, Image.SCALE_SMOOTH);
+        ImageIcon newCanucksIcon = new ImageIcon(canucksImage);
+
+        JLabel canucksImageLabel = new JLabel();
+
+        allPlayersButton.addActionListener(this::actionPerformed);
+        allPlayersButton.setText(s);
+        allPlayersButton.setFocusable(false);
+        jpanelFranchiseOptions.add(allPlayersButton, JPanel.CENTER_ALIGNMENT);
+
+        canucksImageLabel.setIcon(newCanucksIcon);
+        jpanelFranchiseOptions.add(canucksImageLabel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Move To Current Team JButton and add Arrow Icon
+    private void moveToCurrRosterSet(JButton moveToCurrentRoster, String s, JPanel jpanelButtons) {
+        moveToCurrentRoster.addActionListener(this::actionPerformed);
+        moveToCurrentRoster.setText(s);
+        moveToCurrentRoster.setFocusable(false);
+
+        ImageIcon leftArrowIcon = new ImageIcon("./Photos/Left_Arrow_Icon.png");
+        Image leftArrowImage = leftArrowIcon.getImage().getScaledInstance(120, 50,Image.SCALE_SMOOTH);
+        ImageIcon leftArrow = new ImageIcon(leftArrowImage);
+
+        JLabel leftArrowLabel = new JLabel();
+        leftArrowLabel.setIcon(leftArrow);
+
+        jpanelButtons.add(moveToCurrentRoster, JPanel.CENTER_ALIGNMENT);
+        jpanelButtons.add(leftArrowLabel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Move To Trading Block JButton and add Arrow Icon
+    private void moveToTradingBlockSet(JButton moveToTradingBlock, String s, JPanel jpanelButtons) {
+        moveToTradingBlock.addActionListener(this::actionPerformed);
+        moveToTradingBlock.setText(s);
+        moveToTradingBlock.setFocusable(false);
+
+        ImageIcon rightArrowIcon = new ImageIcon("./Photos/Right_Arrow_Icon.png");
+        Image rightArrowImage = rightArrowIcon.getImage().getScaledInstance(120, 50,Image.SCALE_SMOOTH);
+        ImageIcon rightArrow = new ImageIcon(rightArrowImage);
+
+        JLabel rightArrowLabel = new JLabel();
+        rightArrowLabel.setIcon(rightArrow);
+
+        ImageIcon whiteBoardIcon = new ImageIcon("./Photos/White_Board.png");
+        Image whiteBoardImage = whiteBoardIcon.getImage().getScaledInstance(140, 20, Image.SCALE_SMOOTH);
+        ImageIcon whiteBoard = new ImageIcon(whiteBoardImage);
+
+        JLabel whiteBoardLabel = new JLabel();
+        whiteBoardLabel.setIcon(whiteBoard);
+
+        jpanelButtons.add(moveToTradingBlock, JPanel.CENTER_ALIGNMENT);
+        jpanelButtons.add(rightArrowLabel);
+        jpanelButtons.add(whiteBoardLabel);
+
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Trading Block Label JLabel
+    private void tradingBlockLabelSet(JLabel currRosterLabel, JLabel tradingBlockLabel,
+                                      JPanel jpanelTradingBlock) {
+        tradingBlockLabel.setFont(new Font("MV Boli", Font.BOLD, 23));
+        tradingBlockLabel.setVerticalTextPosition(currRosterLabel.TOP);
+        tradingBlockLabel.setHorizontalTextPosition(currRosterLabel.CENTER);
+        jpanelTradingBlock.add(tradingBlockLabel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up AllPlayersFranchiseLabel JLabel
+    private void allPlayersFranchiseLabelSet(JLabel currRosterLabel, JLabel allPlayersFranchiseLabel,
+                                             JPanel allPlayersFranchisePanel) {
+        allPlayersFranchiseLabel.setFont(new Font("MV Boli", Font.BOLD, 21));
+        allPlayersFranchiseLabel.setVerticalTextPosition(currRosterLabel.TOP);
+        allPlayersFranchiseLabel.setHorizontalTextPosition(currRosterLabel.CENTER);
+        allPlayersFranchisePanel.add(allPlayersFranchiseLabel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Attributes Jlabel
+    private void jlabelAttributesSet(JLabel jlabelAttributes) {
+        jlabelAttributes.setBounds(5, 5, 10, 15);
+        jlabelAttributes.setFont(new Font("MV Boli", Font.BOLD, 25));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adding JMenu to JMenuBar
+    private void menuBarAdd() {
+        menuBar.add(menuFile);
+        menuBar.add(menuHelp);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adding JMenuItem to JMenuFile
+    private void menuFileAdd() {
+        menuFile.add(loadItem);
+        menuFile.add(saveItem);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Options Label
+    private void jlabelOptionsSet(JLabel jlabelOptions) {
+        jlabelOptions.setHorizontalTextPosition(JLabel.CENTER);
+        jlabelOptions.setVerticalTextPosition(JLabel.TOP);
+        jlabelOptions.setFont(new Font("MV Boli", Font.BOLD, 20));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Current Roster label
+    private void currRosterLabelSet(JLabel currRosterLabel) {
+        currRosterLabel.setFont(new Font("MV Boli", Font.BOLD, 21));
+        currRosterLabel.setVerticalTextPosition(currRosterLabel.TOP);
+        currRosterLabel.setHorizontalTextPosition(currRosterLabel.CENTER);
+        jpanelCurrRoster.add(currRosterLabel);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Current Roster Panel
+    private void jpanelCurrRosterSet(JPanel jpanelCurrRoster, int i) {
+        jpanelCurrRoster.setBounds(i, 5, 250, 250);
+        jpanelCurrRoster.setBackground(Color.white);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Button Panel
+    private void jpanelButtonsSet() {
+        jpanelButtons.setBounds(465, 5, 250, 250);
+        jpanelButtons.setBackground(new Color(255, 255, 255));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Attribute Panel
+    private void attributePanelSet(JLabel jlabelAttributes) {
+        attributesPanel.setBackground(Color.lightGray);
+        attributesPanel.setBounds(210, 260, 1015, 75);
+        attributesPanel.add(jlabelAttributes);
+        attributesPanel.add(playerAttributesList);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Franchise Option Panel
+    private void franchiseOptionsPanel(JLabel jlabelOptions) {
+        jpanelFranchiseOptions.setBackground(new Color(40, 56, 180));
+        jpanelFranchiseOptions.setBounds(5, 5, 200, 520);
+        jpanelFranchiseOptions.setLayout(new FlowLayout());
+        jpanelFranchiseOptions.add(jlabelOptions);
+        jpanelFranchiseOptions.add(jbuttonCurrTeam, JPanel.CENTER_ALIGNMENT);
+        jpanelFranchiseOptions.add(jbuttonTradingBlock);
+        jpanelFranchiseOptions.add(jbuttonEditPlayer);
+        jpanelFranchiseOptions.add(jbuttonMakePlayer);
+        jpanelFranchiseOptions.add(viewAttributes);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up JFrame
+    private void jframeSet() {
+        jframe.setTitle("FranchiseApp");
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jframe.setJMenuBar(menuBar);
+        jframe.setMinimumSize(new Dimension(1231, 580));
+        jframe.setLayout(null);
+        jframe.setResizable(false);
+        jframe.getContentPane().setBackground(new Color(0, 0, 25));
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up View Attributes jButton
+    private void viewAttributesSetting(JButton viewAttributes, String s) {
+        viewAttributes.addActionListener(this::actionPerformed);
+        viewAttributes.setText(s);
+        viewAttributes.setFocusable(false);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Make Player JButton
+    private void makePlayerButton(JButton jbuttonMakePlayer, String s) {
+        jbuttonMakePlayer.addActionListener(this::actionPerformed);
+        jbuttonMakePlayer.setText(s);
+        jbuttonMakePlayer.setFocusable(false);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up Edit Player JButton
+    private void editPlayerButton(JButton jbuttonEditPlayer, String s) {
+        jbuttonEditPlayer.addActionListener(this::actionPerformed);
+        jbuttonEditPlayer.setText(s);
+        jbuttonEditPlayer.setFocusable(false);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up a JButton for trading block
+    private void tradingBlockButton(JButton jbuttonTradingBlock, String s) {
+        jbuttonTradingBlock.setBounds(100, 100, 200, 100);
+        jbuttonTradingBlock.addActionListener(this::actionPerformed);
+        jbuttonTradingBlock.setText(s);
+        jbuttonTradingBlock.setFocusable(false);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: setting up a JButton for current team
+    private void currTeamButton(JButton jbuttonCurrTeam, String s) {
+        jbuttonCurrTeam.setBounds(100, 100, 200, 100);
+        jbuttonCurrTeam.addActionListener(this::actionPerformed);
+        jbuttonCurrTeam.setText(s);
+        jbuttonCurrTeam.setFocusable(false);
+    }
+
+    // EFFECTS: if the ActionEvent e matches the JButton, then an action is performed
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == jbuttonMakePlayer) {
+            MakePlayerDialog currentTeam = new MakePlayerDialog(this);
+        } else if (e.getSource() == jbuttonEditPlayer) {
+            EditPlayerDialog editPlayer = new EditPlayerDialog(this);
+        } else if (e.getSource() == jbuttonCurrTeam) {
+            currentTeamDialogAction();
+        } else if (e.getSource() == jbuttonTradingBlock) {
+            tradingBlockDialogAction();
+        } else if (e.getSource() == saveItem) {
+            saveGMRosters();
+        } else if (e.getSource() == loadItem) {
+            loadGMRosters();
+        } else if (e.getSource() == moveToTradingBlock) {
+            movePlayerToTradingBlock();
+        } else if (e.getSource() == moveToCurrentRoster) {
+            movePlayerToCurrTeam();
+        } else if (e.getSource() == viewAttributes) {
+            getAttributes();
+        } else if (e.getSource() == allPlayersButton) {
+            allPlayersDialog();
+        }
+        SwingUtilities.updateComponentTreeUI(jframe);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if a player's status is available, the player is moved from the current roster to the trading block
+    public void movePlayerToTradingBlock() {
+        canucks.gmAddToTradingBlockFromCurrTeam();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: if a player's status is "Not Available", the player is moved from the trading block to the
+    //          current roster
+    public void movePlayerToCurrTeam() {
+        canucks.gmAddToCurrRosterFromTradingBlock();
+    }
+
+    // EFFECTS: performs the actionPerform method in the CurrentTeamDialog class
+    public void currentTeamDialogAction() {
+        currentTeamDialog.actionPerform(this);
+    }
+
+    // EFFECTS: performs the allPlayersInFranchise method in the AllPlayersOnTeam class
+    public void allPlayersDialog() {
+        allPlayersOnTeam.allPlayersInFranchise(this);
+    }
+
+    // EFFECTS: performs the actionPerform method in the TradingBlockDialog class
+    public void tradingBlockDialogAction() {
+        tradingBlockDialog.actionPerform(this);
+    }
+
+    // EFFECTS: performs the showAttributes method in the ViewAttributesDialog class
+    public void getAttributes() {
+        viewAttributesDialog.showAttributes(this);
+    }
+
+    // GETTERS
+    public DefaultListModel getRosterModelCurrTeam() {
+        return rosterModelCurrTeam;
+    }
+
+    public DefaultListModel getRosterModelTradingBlock() {
+        return rosterModelTradingBlock;
+    }
+
+    public DefaultListModel getRosterModelPlayerAttributes() {
+        return rosterModelPlayerAttributes;
+    }
+
+    public DefaultListModel getRosterModelAllPlayer() {
+        return rosterModelAllPlayer;
+    }
+
+    public JPanel getAttributesPanel() {
+        return attributesPanel;
+    }
+
+    public JPanel getAttributesPanelTwo() {
+        return attributesPanelTwo;
     }
 
 }

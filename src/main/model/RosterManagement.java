@@ -1,13 +1,5 @@
 package model;
 
-// General functionalities for RosterManagement
-// - 1) Separate forwards, defense, goalies
-// - 2) Categorize players within their positions
-//     - Forwards: Left Wing / Center / Right Wing
-//     - Defense:  Left Defence / Right Defence
-//     - Goalies:       Starter / Backup
-
-
 import java.util.ArrayList;
 
 public class RosterManagement {

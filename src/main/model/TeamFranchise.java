@@ -63,29 +63,6 @@ public class TeamFranchise implements Writable {
         return gm;
     }
 
-    // -- will be for phase 2 ---
-    //public void requirements() {
-    //}
-
-    // -- will be for phase 2 ---
-    //public void adjustRatings() {
-    //}
-
-    // -- will be for phase 2 ---
-    //public void proposeTrade() {
-    //}
-
-    // -- will be for phase 2 ---
-    //public void acceptTrade() {
-    //}
-
-    // -- will be for phase 2 ---
-    //public void declineTrade() {
-    //}
-
-    // -- will be for phase 2 ---
-    //public void counterTrade() {
-    //}
 
     // Referencing WorkRoom
     @Override
