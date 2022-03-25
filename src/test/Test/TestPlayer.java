@@ -4,7 +4,7 @@ import model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestPlayer {
 
@@ -130,5 +130,19 @@ public class TestPlayer {
 
         // Checking For Quinn Hughes' Overall Score
         assertEquals(62, Quinn_Hughes.getOverallRating());
+    }
+
+    @Test
+    public void setPlayerPosition() {
+        // checking player's position
+        assertTrue(Quinn_Hughes.getPosition() == "Defense");
+        assertFalse(Quinn_Hughes.getPosition() == "Forward");
+
+        // setting a player's position to a different position
+        Quinn_Hughes.setPosition("Forward");
+
+        // testing newly set position with player
+        assertTrue(Quinn_Hughes.getPosition() == "Forward");
+        assertFalse(Quinn_Hughes.getPosition() == "Defense");
     }
 }
