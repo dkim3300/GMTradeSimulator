@@ -182,7 +182,6 @@ public class ViewAttributesDialog {
 
     // EFFECTS: adds all the player from the trading block and current roster to one master list
     public void totalPlayers(List<Player> totalPlayerList) {
-
         for (Player p : franchiseApp.getTeam().getGm().getCurrTeam()) {
             totalPlayerList.add(p);
         }

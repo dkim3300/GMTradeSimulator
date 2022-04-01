@@ -54,6 +54,84 @@ As a user, I want to be able to display attributes of the players in the applica
 
 As a user, I want to be able to load and save the state of my application by clicking the "Save" and "Load" options
 
+# Phase 4: Task 2
+
+Example: 
+
+Thu Mar 31 22:52:39 PDT 2022
+Assigned Brock Boeser to current team
+Thu Mar 31 22:52:39 PDT 2022
+Assigned Elias Pettersson to current team
+Thu Mar 31 22:52:39 PDT 2022
+Assigned Quinn Hughes to current team
+Thu Mar 31 22:53:52 PDT 2022
+Setting Daniel Kim shooting rating to: 1
+Thu Mar 31 22:53:52 PDT 2022
+Setting Daniel Kim skating rating to: 1
+Thu Mar 31 22:53:52 PDT 2022
+Setting Daniel Kim puck skill rating to: 1
+Thu Mar 31 22:53:52 PDT 2022
+Setting Daniel Kim hockey IQ rating to: 1
+Thu Mar 31 22:53:52 PDT 2022
+Setting Daniel Kim compete level rating to: 1
+Thu Mar 31 22:53:52 PDT 2022
+Assigned Daniel Kim to current team
+Thu Mar 31 22:54:01 PDT 2022
+Player moved to trading block from current team: Brock Boeser
+Thu Mar 31 22:54:01 PDT 2022
+Player moved to trading block from current team: Quinn Hughes
+Thu Mar 31 22:54:01 PDT 2022
+Player moved to trading block from current team: Daniel Kim
+Thu Mar 31 22:54:02 PDT 2022
+Assigned Jack Hughes to current team
+Thu Mar 31 22:54:02 PDT 2022
+Player moved to current team from trading block: Jack Hughes
+Thu Mar 31 22:54:02 PDT 2022
+Assigned Auston Matthews to current team
+Thu Mar 31 22:54:02 PDT 2022
+Player moved to current team from trading block: Auston Matthews
+Thu Mar 31 22:54:24 PDT 2022
+Setting Daniel Kim position to: Forward
+Thu Mar 31 22:54:24 PDT 2022
+Setting Daniel Kim skating rating to: 5
+Thu Mar 31 22:54:24 PDT 2022
+Setting Daniel Kim shooting rating to: 5
+Thu Mar 31 22:54:24 PDT 2022
+Setting Daniel Kim puck skill rating to: 5
+Thu Mar 31 22:54:24 PDT 2022
+Setting Daniel Kim compete level rating to: 5
+Thu Mar 31 22:54:24 PDT 2022
+Setting Daniel Kim hockey IQ rating to: 5
+Thu Mar 31 22:54:46 PDT 2022
+Setting Tyler Motte shooting rating to: 3
+Thu Mar 31 22:54:46 PDT 2022
+Setting Tyler Motte skating rating to: 3
+Thu Mar 31 22:54:46 PDT 2022
+Setting Tyler Motte puck skill rating to: 3
+Thu Mar 31 22:54:46 PDT 2022
+Setting Tyler Motte hockey IQ rating to: 3
+Thu Mar 31 22:54:46 PDT 2022
+Setting Tyler Motte compete level rating to: 3
+Thu Mar 31 22:54:46 PDT 2022
+Assigned Tyler Motte to current team
+Thu Mar 31 22:54:51 PDT 2022
+Assigned Daniel Kim to current team
+Thu Mar 31 22:54:51 PDT 2022
+Player moved to current team from trading block: Daniel Kim
+
+# Phase 4: Task 3
+
+1) Creating an abstract class for CurrentTeamDialog, TradingBlockDialog, and AllPlayerDialog. After examining my code,
+   there are a fair amount of code duplication that could have been diminished with a higher-level abstract class.
+   For example, putting all the player's names into a string array occurs in each of the three methods above that
+   could have been refactored. 
+2) Creating an abstract class for MakePlayerDialog and EditPlayerDialog. After examining my mode, there were a fair
+   amount of code duplication that could have been diminshed with a higher-level abstract class. For example, in the 
+   setAttributes method, the way each player has their attributes set is the same, so refactoring an abstract class
+   that encompasses this method for MakePlayerDialog and EditPlayerDialog could use would improve my code. 
+
+
+
 
 
 

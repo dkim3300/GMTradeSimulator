@@ -35,12 +35,14 @@ public class GeneralManager {
     }
 
     // MODIFIES: this
-    // EFFECTS: adds players to the current team if not there
+    // EFFECTS: adds players to the current team if not there and logs the event of a player
+    //          moved to the current team
     public void addPlayerToCurrTeam(Player player) {
         if (!currTeam.contains(player)) {
             currTeam.add(player);
-        }
-    }
+            EventLog.getInstance().logEvent(new Event("Assigned " + player.getName() + " to current team"));
+        }    // event log #3
+    }        // this is adding x to y event log
 
     // MODIFIES: this
     // EFFECTS: removes player from current team if there, but does nothing otherwise

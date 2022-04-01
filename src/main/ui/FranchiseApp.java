@@ -1,5 +1,7 @@
 package ui;
 
+import model.EventLog;
+import model.Event;
 import model.GeneralManager;
 import model.Player;
 import model.TeamFranchise;
@@ -10,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -262,12 +266,16 @@ public class FranchiseApp extends JFrame implements ActionListener {
         }
     }
 
+    //public void makePlayer() {
+    //    canucks.makePlayer();
+    //}
+
     // MODIFIES: this
     // EFFECTS: makes a new player and added into the current roster
-    public void makePlayer() {        // move makePlayer into TeamFranchise
-        String nm = "";               //   and move chooseName and choosePosition as params to makePlayer
+    public void makePlayer() {             // move makePlayer into TeamFranchise
+        String nm = "";                    // and move chooseName and choosePosition as params to makePlayer
         String p = "";
-        String status = "";           // also make edit player and do same thing
+        String status = "";                // also make edit player and do same thing
 
         Player player1;
 
@@ -278,6 +286,8 @@ public class FranchiseApp extends JFrame implements ActionListener {
         } else {
             player1.setStatusNotAvailable();
         }
+
+        //EventLog.getInstance().logEvent(new Event("Added Player: " + player1.getName())); // event log
 
         canucks.getGm().addPlayerToCurrTeam(player1);
 
@@ -577,6 +587,7 @@ public class FranchiseApp extends JFrame implements ActionListener {
         tradingBlockButton(jbuttonTradingBlock, "Trading Block");
         editPlayerButton(jbuttonEditPlayer, "Edit Player");
         makePlayerButton(jbuttonMakePlayer, "Make Player");
+        //makePrintEventLogButton(jbuttonPrintEventLog, "Print Event Log");
     }
 
     // EFFECTS: performing methods that set up tradingBlock Panel
@@ -810,7 +821,8 @@ public class FranchiseApp extends JFrame implements ActionListener {
     // EFFECTS: setting up JFrame
     private void jframeSet() {
         jframe.setTitle("FranchiseApp");
-        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jframe.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        jframe.addWindowListener(new WindowListenerLog());
         jframe.setJMenuBar(menuBar);
         jframe.setMinimumSize(new Dimension(1231, 580));
         jframe.setLayout(null);
@@ -824,6 +836,12 @@ public class FranchiseApp extends JFrame implements ActionListener {
         viewAttributes.addActionListener(this::actionPerformed);
         viewAttributes.setText(s);
         viewAttributes.setFocusable(false);
+    }
+
+    private void makePrintEventLogButton(JButton jbuttonPrintEvent, String s) {
+        jbuttonPrintEvent.addActionListener(this::actionPerformed);
+        jbuttonPrintEvent.setText(s);
+        jbuttonPrintEvent.setFocusable(false);
     }
 
     // MODIFIES: this
@@ -918,6 +936,48 @@ public class FranchiseApp extends JFrame implements ActionListener {
     // EFFECTS: performs the showAttributes method in the ViewAttributesDialog class
     public void getAttributes() {
         viewAttributesDialog.showAttributes(this);
+    }
+
+    // Need to add documentation
+    class WindowListenerLog implements WindowListener {
+
+        // Not used
+        @Override
+        public void windowOpened(WindowEvent e) {
+        }
+
+        // EFFECTS: instantiating ScreenPrinter with WindowEvent libraries
+        @Override
+        public void windowClosing(WindowEvent e) {
+            ScreenPrinter printer = new ScreenPrinter();
+            printer.printLog(EventLog.getInstance());
+            System.exit(0);
+        }
+
+        // Not used
+        @Override
+        public void windowClosed(WindowEvent e) {
+        }
+
+        // Not used
+        @Override
+        public void windowIconified(WindowEvent e) {
+        }
+
+        // Not used
+        @Override
+        public void windowDeiconified(WindowEvent e) {
+        }
+
+        // Not used
+        @Override
+        public void windowActivated(WindowEvent e) {
+        }
+
+        // Not used
+        @Override
+        public void windowDeactivated(WindowEvent e) {
+        }
     }
 
     // GETTERS

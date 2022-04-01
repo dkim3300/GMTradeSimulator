@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Player;
 import model.TeamFranchise;
 
@@ -108,7 +110,7 @@ public class MakePlayerDialog {
         int competeLevel = Integer.parseInt(competeLevelInput.getText());
         newPlayer.addCompeteLevelRating(competeLevel);
 
-        franchiseApp.getTeam().getGm().getCurrTeam().add(newPlayer);
+        franchiseApp.getTeam().getGm().addPlayerToCurrTeam(newPlayer);
     }
 
 }

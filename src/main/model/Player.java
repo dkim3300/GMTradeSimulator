@@ -47,31 +47,36 @@ public class Player implements Writable {
     // MODIFIES: this
     // EFFECTS: adjusts a player's rating
     public void addSkatingRating(int rating) {
-        this.skating += rating;
+        this.skating = rating;
+        EventLog.getInstance().logEvent(new Event("Setting " + this.name + " skating rating to: " + rating));
     }
 
     // MODIFIES: this
     // EFFECTS: adjusts a player's rating
     public void addShootingRating(int rating) {
-        this.shooting += rating;
+        this.shooting = rating;
+        EventLog.getInstance().logEvent(new Event("Setting " + this.name + " shooting rating to: " + rating));
     }
 
     // MODIFIES: this
     // EFFECTS: adjusts a player's rating
     public void addPuckSkillsRating(int rating) {
-        this.puckSkills += rating;
+        this.puckSkills = rating;
+        EventLog.getInstance().logEvent(new Event("Setting " + this.name + " puck skill rating to: " + rating));
     }
 
     // MODIFIES: this
     // EFFECTS: adjusts a player's rating
     public void addCompeteLevelRating(int rating) {
-        this.competeLevel += rating;
+        this.competeLevel = rating;
+        EventLog.getInstance().logEvent(new Event("Setting " + this.name + " compete level rating to: " + rating));
     }
 
     // MODIFIES: this
     // EFFECTS: adjusts a player's rating
     public void addHockeyIQRating(int rating) {
-        this.hockeyIQ += rating;
+        this.hockeyIQ = rating;
+        EventLog.getInstance().logEvent(new Event("Setting " + this.name + " hockey IQ rating to: " + rating));
     }
 
     // MODIFIES: this
@@ -82,6 +87,7 @@ public class Player implements Writable {
 
     public void setPosition(String position) {
         this.position = position;
+        EventLog.getInstance().logEvent(new Event("Setting " + this.name + " position to: " + position));
     }
 
     // MODIFIES: this
