@@ -1,4 +1,4 @@
-# NHL Trade Simulator
+# GM Trade Simulator
 
 **What is it going to be?**
 
