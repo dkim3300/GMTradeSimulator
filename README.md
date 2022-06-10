@@ -12,7 +12,7 @@ for the player to be successfully traded to the user's team.
 My project will be for any type of person. This can range from a hockey fanatic to 
 a person who is just getting familiar with hockey. 
 
-**Why is this project of interest to you?** 
+**Motivation for this project?** 
 
 Ever since I was young, I have always been intrigued by NHL general managers 
 evaluating players and trading players with other teams. This fascination has 
@@ -23,38 +23,8 @@ takes a long time to do. As a result, I want to use this opportunity to build
 a system that automatically outputs a list of players that meet my requirements and 
 estimates the costs required to obtain them. 
 
-# User Stories 
 
-**NHL Trade Simulator Application**
-
-As a user, I want to be able to view all the players on the current roster and trading list
-
-As a user, I want to be able to view players' specific attributes such as their availability status from either 
-the current roster or trading block list
-
-As a user, I want to be able to add players between current roster and the trading block depending on their
-availability status
-
-As a user, I want to be able to make new players and add them into the current roster
-
-As a user, I want to be able to quit the game
-
-As a user, I want to be able to edit any players in the game
-
-As a user, I want to be able to save the current roster and the trading block 
-
-As a user, I want to be to load my current team and trading list
-
-As a user, I want to be able to make players and add the player to the current roster by clicking on the "Make Player"
-           button
-
-As a user, I want to be able to edit players by clicking on the "Edit Player" button
-
-As a user, I want to be able to display attributes of the players in the application
-
-As a user, I want to be able to load and save the state of my application by clicking the "Save" and "Load" options
-
-# Phase 4: Task 2
+# Event Logging
 
 Example: 
 
@@ -119,16 +89,6 @@ Assigned Daniel Kim to current team
 Thu Mar 31 22:54:51 PDT 2022
 Player moved to current team from trading block: Daniel Kim
 
-# Phase 4: Task 3
-
-1) Creating an abstract class for CurrentTeamDialog, TradingBlockDialog, and AllPlayerDialog. After examining my code,
-   there are a fair amount of code duplication that could have been diminished with a higher-level abstract class.
-   For example, putting all the player's names into a string array occurs in each of the three methods above that
-   could have been refactored. 
-2) Creating an abstract class for MakePlayerDialog and EditPlayerDialog. After examining my mode, there were a fair
-   amount of code duplication that could have been diminshed with a higher-level abstract class. For example, in the 
-   setAttributes method, the way each player has their attributes set is the same, so refactoring an abstract class
-   that encompasses this method for MakePlayerDialog and EditPlayerDialog could use would improve my code. 
 
 
 
