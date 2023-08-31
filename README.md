@@ -1,5 +1,7 @@
 # GM Trade Simulator
 
+An application that allows users to become sports 'General Managers' by creating, trading, re-assign, and viewing the attributes of their players.
+
 **What is it going to be?**
 
 My personal project will be an NHL trade simulator where a "team" (user) will 
